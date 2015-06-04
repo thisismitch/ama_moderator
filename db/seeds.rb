@@ -5,6 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+puts "Destroying data"
+Role.destroy_all
+User.destroy_all
+Event.destroy_all
+Question.destroy_all
+
 
 puts "Adding sample data"
 Role.create [
@@ -28,11 +34,13 @@ User.create [
 
 Event.create [
   { user_id: User.find_by(name: 'Mitchell Anicas').id,
+    name: '6/28/2015 AMA',
     description: 'The first AMA event.',
     closed: false }]
 
 Question.create [
   {
+    event_id: Event.find_by(name: '6/28/2015 AMA').id,
     user_id: User.find_by(name: 'Tyler Wolff').id,
     copy: "So what's the deal with peanut butter and jelly sandwiches? I think they're delicious!",
     anonymous_flag: false,
@@ -40,6 +48,7 @@ Question.create [
     deleted: false
   },
   {
+    event_id: Event.find_by(name: '6/28/2015 AMA').id,
     user_id: User.find_by(name: 'Mitchell Anicas').id,
     copy: "Why doesn't this app work?",
     anonymous_flag: true,
