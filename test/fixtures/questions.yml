@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  event_id: 1
+  copy: MyString
+  anonymous_flag: false
+  closed: false
+  deleted: false
+
+two:
+  user_id: 1
+  event_id: 1
+  copy: MyString
+  anonymous_flag: false
+  closed: false
+  deleted: false
