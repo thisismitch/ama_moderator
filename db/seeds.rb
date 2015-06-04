@@ -5,3 +5,45 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+puts "Adding sample data"
+Role.create [
+ { name: 'admin' },
+ { name: 'normal' }]
+
+User.create [
+  {
+    email: 'manicas@digitalocean.com',
+    name: 'Mitchell Anicas',
+    location: 'Williamsburg, NY'
+    role_id: Role.find_by(name: 'admin').id
+  },
+  {
+    email: 'tyler@digitalocean.com',
+    name: 'Tyler Wolff',
+    location: 'Honolulu, HI'
+    role_id: Role.find_by(name: 'normal').id
+  }]
+
+Event.create [
+  { user_id: User.find_by(name: 'Mitchell Anicas').id,
+    description: 'The first AMA event.',
+    closed: false }]
+
+Question.create [
+  {
+    user_id: User.find_by(name: 'Tyler Wolff').id,
+    copy: "So what's the deal with peanut butter and jelly sandwiches? I think they're delicious!",
+    anonymous_flag: false,
+    closed: false,
+    deleted: false
+  },
+  {
+    user_id: User.find_by(name: 'Mitchell Anicas').id,
+    copy: "Why doesn't this app work?",
+    anonymous_flag: true,
+    closed: false,
+    deleted: false
+  },
+
+]

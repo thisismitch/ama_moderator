@@ -15,12 +15,12 @@ ActiveRecord::Schema.define(version: 20150604030005) do
 
   create_table "events", force: :cascade do |t|
     t.integer  "user_id"
-    t.datetime "when"
+    t.datetime "scheduled_datetime"
     t.string   "name"
     t.string   "description"
     t.boolean  "closed"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "questions", force: :cascade do |t|
