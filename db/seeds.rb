@@ -15,15 +15,16 @@ User.create [
   {
     email: 'manicas@digitalocean.com',
     name: 'Mitchell Anicas',
-    location: 'Williamsburg, NY'
+    location: 'Williamsburg, NY',
     role_id: Role.find_by(name: 'admin').id
-  },
+    },
   {
     email: 'tyler@digitalocean.com',
     name: 'Tyler Wolff',
-    location: 'Honolulu, HI'
+    location: 'Honolulu, HI',
     role_id: Role.find_by(name: 'normal').id
-  }]
+    }
+]
 
 Event.create [
   { user_id: User.find_by(name: 'Mitchell Anicas').id,
