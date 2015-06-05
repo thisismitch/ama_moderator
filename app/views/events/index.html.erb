@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="small-12 columns">
+    <h2>View events</h2>
+  </div>
+</div>
+
+<% @events.each do |event| %>
+<section class="u-dividerBottomSmall">
+  <div class="row">
+    <ul>
+      <li><%= link_to event.name, event_path(event.id) %></li>
+    </ul>
+  </div>
+</section>
+<% end %>
