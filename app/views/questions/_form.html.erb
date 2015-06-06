@@ -12,13 +12,8 @@
 
     <div class="row u-mb-4">
       <div class="small-6 columns">
-        <div class="radio">
-          <%= f.radio_button :anonymous_flag, false %>
-          <span></span>
-          <%= f.label @username %>
-        </div>
-        <div class="radio">
-          <%= f.radio_button :anonymous_flag, true %>
+        <div class="checkbox">
+          <%= f.check_box :anonymous_flag, value: true %>
           <span></span>
           <%= f.label :anonymous_flag, 'Anonymous' %>
         </div>
