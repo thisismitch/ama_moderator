@@ -10,11 +10,12 @@ class QuestionsController < ApplicationController
   end
 
   def new
+    @username = current_user.name
     @question = @event.questions.new
   end
 
   def create    
-    @question = @event.questions.create(copy: question_params[:copy], event_id: @event.id, user_id: current_user.id)
+    @question = @event.questions.create(copy: question_params[:copy], anonymous_flag: question_params[:anonymous_flag], event_id: @event.id, user_id: current_user.id)
     redirect_to @event, notice: 'Event was created.'
   end
 

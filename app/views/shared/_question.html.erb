@@ -2,7 +2,12 @@
 <section class="u-dividerBottomSmall">
   <div class="row u-mb-2">
     <div class="small-12 columns">
-      <h4><%= question.user.name %> asks:</h4>
+      <h4>
+      <% if question.anonymous_flag == true %>
+        Anonymous
+      <% else %>
+        <%= question.user.name %>
+      <% end %> asks:</h4>
       <div class="small-10 columns">
         <p>"<%= question.copy %>"</p>
         <div class="row u-mt-2">
