@@ -16,9 +16,5 @@
 !/log/.keep
 /tmp
 
-
-# Ignore seeds
-/db/seeds.rb
-
 # Ignore rbenv vars
 /.rbenv-vars

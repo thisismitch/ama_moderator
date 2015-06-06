@@ -17,7 +17,6 @@ class EventsController < ApplicationController
     @user = current_user.id
     
     @event = Event.create(event_params)
-    # redirect_to event_path(@event)
     redirect_to @event, notice: 'Event was created.'
   end
 
