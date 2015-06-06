@@ -1,25 +1,21 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:edit, :show, :update, :destroy]
+  before_action :set_event, only: [:new, :create]
 
   def index
-    @questions = Question.all
+    @questions = Question.all.reverse_order
   end
 
   def show
-    @question = Question.find(params[:id])
   end
 
   def new
-    @question = Question.new
+    @question = @event.questions.new
   end
 
-  def create
-    @event = Event.first
-    @user = User.find_by(name: 'Mitchell Anicas')
-    ## Above code is for testing
-    
-    @question = Question.create(copy: question_params[:copy], event_id: @event.id, user_id: @user.id)
-    redirect_to @question
+  def create    
+    @question = @event.questions.create(copy: question_params[:copy], event_id: @event.id, user_id: current_user.id)
+    redirect_to @event, notice: 'Event was created.'
   end
 
   def edit
@@ -33,9 +29,6 @@ class QuestionsController < ApplicationController
 
 
 
-
-
-
   private
 
   def question_params
@@ -45,5 +38,10 @@ class QuestionsController < ApplicationController
   def set_question
     @question = Question.find(params[:id])
   end
+
+  def set_event
+    @event = Event.find(params[:event_id])
+  end
+
 
 end

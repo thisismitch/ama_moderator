@@ -2,11 +2,11 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:edit, :show, :update, :destroy]
 
   def index
-  	@events = Event.all
+  	@events = Event.all.reverse_order
   end
 
   def show
-   	@questions = @event.questions
+   	@questions = Event.find(params[:id]).questions.reverse_order
   end
 
   def new
