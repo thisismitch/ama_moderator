@@ -7,9 +7,18 @@
 <% @events.each do |event| %>
 <section class="u-dividerBottomSmall">
   <div class="row">
+  	<div class="small-12 columns">
     <ul>
       <li><%= link_to event.name, event_path(event.id) %></li>
     </ul>
+    </div>
   </div>
 </section>
 <% end %>
+<section class="u-dividerBottomSmall">
+  <div class="row">
+  	<div class="small-12 columns">
+    <p><%= link_to 'Create new event', new_event_path %></p>
+    </div>
+  </div>
+</section>
