@@ -10,7 +10,7 @@
     </div>
   </div>
 </div>
-<%= render 'shared/question' %>
+<%= render @questions %>
 <div class="row">
   <div class="small-12 columns">
     <p><%= link_to 'Ask a question', new_event_question_path(@event.id) %></p>
