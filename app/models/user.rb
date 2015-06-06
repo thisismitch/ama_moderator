@@ -8,7 +8,6 @@ class User < ActiveRecord::Base
   has_many :responses
   has_many :votes
   has_many :events
-  belongs_to :role
   validates_uniqueness_of :email
   
   def self.from_omniauth(auth)
@@ -18,7 +17,6 @@ class User < ActiveRecord::Base
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
       user.name = auth.info.name
-      user.role_id = Role.find_by(name: 'normal').id
     end
   end
 end

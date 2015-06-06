@@ -6,15 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 puts "Destroying data"
-Role.destroy_all
 User.destroy_all
 Event.destroy_all
 Question.destroy_all
 
-puts "Initializing data"
- Role.create [
-  { name: 'admin' },
-  { name: 'normal' }]
+# puts "Initializing data"
+
 
 # puts "Adding sample data"
 
