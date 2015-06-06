@@ -44,3 +44,8 @@ group :development, :test do
 end
 
 gem 'buoy'
+
+gem 'therubyracer'
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
