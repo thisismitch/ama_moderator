@@ -5,20 +5,20 @@
 </div>
 
 <% @events.each do |event| %>
-<section class="u-dividerBottomSmall">
-  <div class="row">
-  	<div class="small-12 columns">
-    <ul>
-      <li><%= link_to event.name, event_path(event.id) %></li>
-    </ul>
-    </div>
+<div class="row">
+	<div class="small-12 columns">
+  <ul>
+    <li><%= link_to event.name, event_path(event.id) %></li>
+  </ul>
   </div>
-</section>
+</div>
 <% end %>
-<section class="u-dividerBottomSmall">
+
+<% if policy(@events).create? %>
   <div class="row">
   	<div class="small-12 columns">
+    <h3>Admin:</h3>
     <p><%= link_to 'Create new event', new_event_path %></p>
     </div>
   </div>
-</section>
+<% end %>

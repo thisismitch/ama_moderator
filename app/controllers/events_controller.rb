@@ -11,24 +11,33 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    authorize(@event)
   end
 
   def create
     @user = current_user.id
-    
-    @event = Event.create(event_params)
+
+    @event = Event.new(event_params)
+    authorize(@event)
+    @event.save
     redirect_to @event, notice: 'Event was created.'
   end
 
   def edit
+    authorize @event
   end
 
   def update
-    @event.update(event_params)
-    redirect_to @event, notice: 'Event was updated.'
+    authorize @event
+    if @event.update(event_params)
+      redirect_to @event, notice: 'Event was updated.'
+    else
+      render :edit
+    end
   end
 
   def destroy
+    authorize @event
     @event.destroy
     redirect_to events_path, notice: 'Event was deleted.'
   end

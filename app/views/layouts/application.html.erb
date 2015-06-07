@@ -8,10 +8,21 @@
 </head>
 <body>
 <% if notice %>
-  <p class="alert alert-success"><%= notice %></p>
+  <div class="Alert Alert--success">
+    <div class="Alert-content">
+      <span class="Alert-icon Icon--check"></span>
+      <p><%= notice %></p>
+      <a class="Alert-close Icon--close"></a>
+    </div>
+  </div>
 <% end %>
 <% if alert %>
-  <p class="alert alert-danger"><%= alert %></p>
+  <div class="Alert Alert--failure">
+    <div class="Alert-content">
+      <span class="Alert-icon Icon--close"></span>
+      <p><%= alert %></p>
+    </div>
+  </div>
 <% end %>
 <div class="row">
   <div class="small-12 columns">

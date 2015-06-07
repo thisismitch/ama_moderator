@@ -43,9 +43,15 @@ group :development, :test do
   gem 'spring'
 end
 
-gem 'buoy'
-
+# Authentication - OAuth
 gem 'therubyracer'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+
+# Authorization
+gem 'pundit'
+
+# DO Style
+gem 'buoy'
+
