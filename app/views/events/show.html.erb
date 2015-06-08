@@ -1,19 +1,27 @@
-<div class="row">
-  <div class="small-12 columns">
-    <h2>View and vote for questions</h2>
+<div class="row u-mb-7">
+  <div class="small-6 columns">
+    <h2><%= @event.name %></h2>
+      <h4>
+        <%= @event.scheduled_datetime %>
+        <% if @event.closed %>
+          (Closed)
+        <% end %>
+      </h4>
+    <p class="small"><%= @event.description %></p>
   </div>
-</div>
-<div class="row">
-  <div class="u-dividerBottomSmall">
-    <div class="small-12 columns">
-      <h3><%= @event.name %></h3>
-    </div>
+  <div class="small-2 small-offset-3 columns">
+    <p><%= link_to 'Ask Question', new_event_question_path(@event.id), class: 'Button Button--green Button--fullWidth'%></p>
   </div>
+  <% if policy(@event).edit? %>
+  <div class="small-1 columns">
+    <%#= link_to '', close_event_path, { class: 'Button Button--red Button--icon Icon--arrowDown', :'data-toggle' => 'tooltip', :'data-placement' => 'top', title: 'Close Event' }%>
+    <%= link_to '', edit_event_path, { class: 'Button Button--blue Button--icon Icon--gear', :'data-toggle' => 'tooltip', :'data-placement' => 'top', title: 'Edit Event' } %>
+  </div>
+  <% end %>
 </div>
 <%= render @questions %>
 <div class="row">
   <div class="small-12 columns">
-    <p><%= link_to 'Ask a question', new_event_question_path(@event.id) %></p>
     <p><%= link_to 'Back to all events', events_path %></p>
   </div>
 </div>
