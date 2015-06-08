@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   end
 
   resources :events, concerns: :has_questions
+  get '/events/:id/close', to: 'events#close', as: 'close_event'
+  get '/events/:id/open', to: 'events#open', as: 'open_event'
+
   resources :questions
 
   root 'events#index'

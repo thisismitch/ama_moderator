@@ -1,11 +1,12 @@
 <div class="row u-mb-7">
   <div class="small-6 columns">
-    <h2><%= @event.name %></h2>
+    <h2><%= @event.name %>
+    <% if @event.closed %>
+      (Closed)
+    <% end %>
+    </h2>
       <h4>
         <%= @event.scheduled_datetime %>
-        <% if @event.closed %>
-          (Closed)
-        <% end %>
       </h4>
     <p class="small"><%= @event.description %></p>
   </div>
@@ -14,7 +15,11 @@
   </div>
   <% if policy(@event).edit? %>
   <div class="small-1 columns">
-    <%#= link_to '', close_event_path, { class: 'Button Button--red Button--icon Icon--arrowDown', :'data-toggle' => 'tooltip', :'data-placement' => 'top', title: 'Close Event' }%>
+    <% if @event.closed %>
+      <%= link_to '', open_event_path, { class: 'Button Button--green Button--icon Icon--arrowUp', :'data-toggle' => 'tooltip', :'data-placement' => 'top', title: 'Open Event' }%>
+    <% else %>
+      <%= link_to '', close_event_path, { class: 'Button Button--red Button--icon Icon--arrowDown', :'data-toggle' => 'tooltip', :'data-placement' => 'top', title: 'Close Event' }%>
+    <% end %>
     <%= link_to '', edit_event_path, { class: 'Button Button--blue Button--icon Icon--gear', :'data-toggle' => 'tooltip', :'data-placement' => 'top', title: 'Edit Event' } %>
   </div>
   <% end %>

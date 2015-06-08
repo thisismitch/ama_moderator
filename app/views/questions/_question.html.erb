@@ -18,9 +18,11 @@
       </div>
       <div class="small-2 columns">
         <div class="row u-mb-2">
+          <%#= link_to '', question_upvote_path(question.id), { class: 'Button Button--green Button--icon Icon--check', :'data-toggle' => 'tooltip', :'data-placement' => 'top', title: 'Upvote' }%>
           <a class="Button Button--icon Button--green Icon--check"></a>
         </div>
         <div class="row u-mb-2">
+          <%#= link_to '', question_downvote_path(question.id), { class: 'Button Button--red Button--icon Icon--close', :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', title: 'Downvote' }%>
           <a class="Button Button--icon Button--red Icon--close"></a>
         </div>
         <div class="row">

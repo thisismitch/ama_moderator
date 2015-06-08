@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:edit, :show, :update, :destroy]
+  before_action :set_event, only: [:edit, :show, :update, :destroy, :close, :open]
 
   def index
   	@events = Event.all.reverse_order
@@ -41,6 +41,19 @@ class EventsController < ApplicationController
     @event.destroy
     redirect_to events_path, notice: 'Event was deleted.'
   end
+
+  def close
+    authorize @event
+    @event.update(closed: true)
+    redirect_to :back, notice: 'Event was closed.'
+  end
+
+  def open
+    authorize @event
+    @event.update(closed: false)
+    redirect_to :back, notice: 'Event was opened.'
+  end
+
 
   private
 
