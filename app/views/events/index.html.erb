@@ -1,24 +1,41 @@
 <div class="row">
+  <div class="small-6 columns">
+    <h2>Events</h2>
+  </div>
+  <% if policy(@events).create? %>
+  <div class="small-2 small-offset-4 columns">
+    <p><%= link_to 'Create Event', new_event_path, class: 'Button Button--green Button--fullWidth'%></p>
+  </div>
+  <% end %>
+</div>
+
+<div class="row u-mb-5">
   <div class="small-12 columns">
-    <h2>View events</h2>
-  </div>
+  <table class="u-mb-5">
+    <tbody class="Table-actions">
+    <% @events.each do |event| %>
+      <tr>
+        <td>
+          <div class="Table-actions">
+          <h3><%= link_to event.name, event_path(event.id) %>
+                    <% if event.closed %>
+            (closed)
+          <% end %>
+          </h3>
+          <h4>
+          <%= event.scheduled_datetime %>
+          </h4>
+          <p class="small"><%= event.description %></p>
+            <div class="ButtonGroup">
+            <% if policy(@events).edit? %>
+              <%= link_to '', edit_event_path(event.id), { class: 'Button Button--blue Button--icon Icon--gear', :'data-toggle' => 'tooltip', :'data-placement' => 'top', title: 'Edit Event' }%>
+            <% end %>
+            </div>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
 </div>
-
-<% @events.each do |event| %>
-<div class="row">
-	<div class="small-12 columns">
-  <ul>
-    <li><%= link_to event.name, event_path(event.id) %></li>
-  </ul>
-  </div>
 </div>
-<% end %>
-
-<% if policy(@events).create? %>
-  <div class="row">
-  	<div class="small-12 columns">
-    <h3>Admin:</h3>
-    <p><%= link_to 'Create new event', new_event_path, class: 'Button Button--blue'%></p>
-    </div>
-  </div>
-<% end %>
