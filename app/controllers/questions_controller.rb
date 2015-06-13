@@ -7,6 +7,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    @user_id = current_user.id
   end
 
   def new

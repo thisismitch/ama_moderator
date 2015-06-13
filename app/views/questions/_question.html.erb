@@ -18,12 +18,10 @@
       </div>
       <div class="small-2 columns">
         <div class="row u-mb-2">
-          <%#= link_to '', question_upvote_path(question.id), { class: 'Button Button--green Button--icon Icon--check', :'data-toggle' => 'tooltip', :'data-placement' => 'top', title: 'Upvote' }%>
-          <a class="Button Button--icon Button--green Icon--check"></a>
+          <%= link_to '', upvote_question_path(question.id), { method: :post, class: 'Button Button--outline Button--green Button--icon Icon--check', :'data-toggle' => 'tooltip', :'data-placement' => 'top', title: 'Upvote' } %>
         </div>
         <div class="row u-mb-2">
-          <%#= link_to '', question_downvote_path(question.id), { class: 'Button Button--red Button--icon Icon--close', :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', title: 'Downvote' }%>
-          <a class="Button Button--icon Button--red Icon--close"></a>
+          <%= link_to '', downvote_question_path(question.id), { method: :post, class: 'Button Button--outline Button--red Button--icon Icon--close', :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', title: 'Downvote' } %>
         </div>
         <div class="row">
           <a href="flag">Flag as inappropriate</a>
