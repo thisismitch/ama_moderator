@@ -17,7 +17,12 @@ class QuestionsController < ApplicationController
 
   def create    
     @question = @event.questions.create(copy: question_params[:copy], anonymous_flag: question_params[:anonymous_flag], event_id: @event.id, user_id: current_user.id)
-    redirect_to @event, notice: 'Event was created.'
+
+    if @question.errors.any?
+      redirect_to :back, alert: "Error: " + @question.errors.full_messages.to_sentence
+    else
+      redirect_to @event, notice: 'Question was created.'
+    end
   end
 
   def edit
