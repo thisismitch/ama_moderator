@@ -18,7 +18,7 @@
       </div>
       <div class="small-2 columns">
         <div class="row u-mb-2">
-          <%= question.votes.where("type_of LIKE ?", 'up').count %>
+          <%= pluralize(question.votes.where("type_of LIKE ?", 'up').count, 'vote') %>
           <% if @user.votes.where("question_id = ?", question.id).where("type_of LIKE ?", 'up').empty? %>
           <%= link_to '', upvote_question_path(question.id), { method: :post, class: 'Button Button--outline Button--green Button--icon Icon--check', :'data-toggle' => 'tooltip', :'data-placement' => 'top', title: 'Upvote' } %>
           <% else %>
@@ -26,7 +26,7 @@
           <% end %>
         </div>
         <div class="row u-mb-2">
-          <%= question.votes.where("type_of LIKE ?", 'down').count %>
+          <%= pluralize(question.votes.where("type_of LIKE ?", 'down').count, 'vote') %>
           <% if @user.votes.where("question_id = ?", question.id).where("type_of LIKE ?", 'down').empty? %>
             <%= link_to '', downvote_question_path(question.id), { method: :post, class: 'Button Button--outline Button--red Button--icon Icon--close', :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', title: 'Downvote' } %>
           <% else %>
