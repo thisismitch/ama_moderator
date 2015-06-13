@@ -1,0 +1,16 @@
+<div class="row u-mb-4">
+  <div class="u-dividerBottomSmall">
+    <div class="small-11 small-offset-1 columns">
+      <h4>
+        <% if response.anonymous_flag == true %>
+          Anonymous
+        <% else %>
+          <%= @question.user.name %>
+        <% end %> responds:
+      </h4>
+      <div class="small-10 columns">
+        <p>"<%= response.copy %>"</p>
+      </div>
+    </div>
+  </div>
+</div>

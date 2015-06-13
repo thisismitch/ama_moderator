@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="small-12 columns">
+    <h2>Submit Response</h2>
+  </div>
+</div>
+<%= render @question %>
+<%= render 'form' %>
+<% if @question.responses.count > 0 %>
+  <%= render @responses %>
+<% end %>
