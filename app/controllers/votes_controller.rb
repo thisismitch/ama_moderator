@@ -20,11 +20,7 @@ class VotesController < ApplicationController
       redirect_to :back, notice: 'Question downvoted.'
     end
   end
-
-  def retract_vote
-
-  end
-
+  
   private
 
   def set_question_and_vote
