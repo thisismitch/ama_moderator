@@ -20,7 +20,12 @@ class EventsController < ApplicationController
     @event.user_id = current_user.id
     authorize(@event)
     @event.save
-    redirect_to @event, notice: 'Event was created.'
+
+    if @event.errors.any?
+      redirect_to @event, alert: "Error: " + @event.errors.full_messages.to_sentence
+    else
+      redirect_to events_path, notice: "Event (#{@event.name}) was created."
+    end
   end
 
   def edit
@@ -29,10 +34,13 @@ class EventsController < ApplicationController
 
   def update
     authorize @event
-    if @event.update(event_params)
-      redirect_to @event, notice: 'Event was updated.'
+
+    @event.update(event_params)
+
+    if @event.errors.any?
+      redirect_to :back, alert: "Error: " + @event.errors.full_messages.to_sentence
     else
-      render :edit
+      redirect_to @event, notice: 'Event was updated.'
     end
   end
 
