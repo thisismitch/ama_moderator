@@ -20,7 +20,7 @@
         <%= f.submit 'Create Event', class: "Button Button--green Button--fullWidth" %>
       <% elsif @_controller.action_name == 'edit' %>
         <p><%= f.submit 'Update Event', class: "Button Button--green Button--fullWidth" %></p>
-        <p><%= link_to 'Destroy Event', @event, method: :delete, class: "Button Button--withIcon Button--red Icon--close Button--fullWidth" %></p>
+        <p><%= link_to 'Destroy Event', @event, method: :delete, class: "Button Button--outline Button--withIcon Button--red Icon--close Button--fullWidth" %></p>
       <% end %>
     </div>
     <% end %>
