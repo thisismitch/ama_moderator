@@ -7,6 +7,7 @@ class EventsController < ApplicationController
 
   def show
    	@questions = Event.find(params[:id]).questions.reverse_order
+    @user = current_user
   end
 
   def new
