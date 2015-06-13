@@ -6,4 +6,5 @@ class Question < ActiveRecord::Base
   belongs_to :event
   has_many :votes
   has_many :comments
+  has_many :responses
 end

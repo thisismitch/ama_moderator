@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'votes/create'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
@@ -10,6 +9,12 @@ Rails.application.routes.draw do
   concern :has_questions do
     resources :questions, only: [:index, :new, :create]
   end
+
+  get '/questions/:id/responses/new', to: 'responses#new', as: 'new_question_response'
+  get '/questions/:id/responses', to: 'responses#index', as: 'question_responses'
+  post '/questions/:id/responses', to: 'responses#create'
+  resources :responses, only: [:destroy, :edit, :update]
+
 
   post '/questions/:id/upvote/', to: 'votes#upvote', as: 'upvote_question'
   post '/questions/:id/downvote/', to: 'votes#downvote', as: 'downvote_question'

@@ -1,4 +1,4 @@
-<div class="row u-mb-2">
+<div class="row u-mb-5">
   <div class="u-dividerBottomSmall">
     <div class="small-12 columns">
       <h4>
@@ -12,7 +12,12 @@
         <p>"<%= question.copy %>"</p>
         <div class="row u-mt-2">
           <div class="small-6 columns">
-            <a href="viewResponse">View response</a> <a href="response">Post a response</a>
+            <p class="small">
+            <% if question.responses.count > 0 %>
+              <%= link_to "View #{'response'.pluralize(question.responses.count)} (#{question.responses.count.to_s})", question_responses_path(question.id) %>
+            <% end %>
+              <%= link_to 'Post a response', new_question_response_path(question.id) %>
+            </p>
           </div>
         </div>
       </div>
@@ -32,9 +37,6 @@
           <% else %>
             <a class="Button Button--red Button--icon Icon--close"></a>
           <% end %>
-        </div>
-        <div class="row">
-          <a href="flag">Flag as inappropriate</a>
         </div>
       </div>
     </div>

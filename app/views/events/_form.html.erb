@@ -9,20 +9,21 @@
         </div>
       </div>
     </div>
-    <div class="row u-mb-4">
+    <div class="row">
       <div class="small-6 columns">
       </div>
-    <div class="small-1 small-offset-2 columns">
-      <p>250</p>
-    </div>
-    <div class="small-3 columns">
-      <% if @_controller.action_name == 'new' %>
+      <div class="small-1 small-offset-2 columns">
+        <p>250</p>
+      </div>
+      <div class="small-3 columns">
+        <% if @_controller.action_name == 'new' %>
         <%= f.submit 'Create Event', class: "Button Button--green Button--fullWidth" %>
-      <% elsif @_controller.action_name == 'edit' %>
+        <% elsif @_controller.action_name == 'edit' %>
         <p><%= f.submit 'Update Event', class: "Button Button--green Button--fullWidth" %></p>
         <p><%= link_to 'Destroy Event', @event, method: :delete, class: "Button Button--outline Button--withIcon Button--red Icon--close Button--fullWidth" %></p>
+        <% end %>
+      </div>
       <% end %>
     </div>
-    <% end %>
   </div>
 </div>

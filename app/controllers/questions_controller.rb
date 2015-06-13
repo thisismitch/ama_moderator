@@ -11,7 +11,6 @@ class QuestionsController < ApplicationController
   end
 
   def new
-    @username = current_user.name
     @question = @event.questions.new
   end
 
