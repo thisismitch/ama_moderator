@@ -12,11 +12,13 @@ class QuestionsController < ApplicationController
 
   def new
     @question = @event.questions.new
+    authorize(@question)
   end
 
-  def create    
+  def create
     @question = @event.questions.create(copy: question_params[:copy], anonymous_flag: question_params[:anonymous_flag], event_id: @event.id, user_id: current_user.id)
-
+    authorize(@question)
+    
     if @question.errors.any?
       redirect_to :back, alert: "Error: " + @question.errors.full_messages.to_sentence
     else

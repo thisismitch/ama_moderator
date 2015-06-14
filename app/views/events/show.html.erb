@@ -11,7 +11,13 @@
     <p class="small"><%= @event.description %></p>
   </div>
   <div class="small-2 small-offset-3 columns">
-    <p><%= link_to 'Ask Question', new_event_question_path(@event.id), class: 'Button Button--green Button--fullWidth'%></p>
+    <p>
+    <% if !@event.closed %>
+    <%= link_to 'Ask Question', new_event_question_path(@event.id), class: 'Button Button--green Button--fullWidth'%>
+    <% else %>
+    <a class="Button is-disabled Button--green Button--fullWidth data-toggle="tooltip" data-placement="top" title="Event is closed">Ask Question</a>
+    <% end %>
+    </p>
   </div>
   <% if policy(@event).edit? %>
   <div class="small-1 columns">
