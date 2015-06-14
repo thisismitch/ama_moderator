@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   post '/questions/:id/responses', to: 'responses#create'
   resources :responses, only: [:destroy, :edit, :update]
 
-
+  resources :questions, only: [:destroy, :edit, :update]
   post '/questions/:id/upvote/', to: 'votes#upvote', as: 'upvote_question'
   post '/questions/:id/downvote/', to: 'votes#downvote', as: 'downvote_question'
 

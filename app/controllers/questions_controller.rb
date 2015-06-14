@@ -25,15 +25,29 @@ class QuestionsController < ApplicationController
   end
 
   def edit
+    authorize(@question)
+    @event = @question.event
   end
 
   def update
+    authorize(@question)
+
+    @question.update(question_params)
+
+    if @question.errors.any?
+      redirect_to :back, alert: "Error: #{@question.errors.full_messages.to_sentence}"
+    else
+      redirect_to event_path(@question.event_id), notice: 'Question was updated.'
+    end
   end
 
   def destroy
+    authorize(@question)
+
+    event_id = @question.event_id
+    @question.destroy
+    redirect_to event_path(event_id), notice: "Question destroyed."
   end
-
-
 
   private
 
