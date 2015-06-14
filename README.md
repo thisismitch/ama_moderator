@@ -17,13 +17,9 @@ Google+ must be enabled.
 
 ## Need to Implement
 
-- Edit Questions
-- Delete Questions
-- View Response
-- Post Response
-- Flag as inappropriate
-- My Votes - List of questions voted on by user (filter by all,up,down), (sort by timestamp, popularity)
-- My Questions - List of questions asked by user (sort by timestamp, popularity)
-- Authorization (routing based on admin or ownership)
-
+- My Votes - List of questions voted on by a user (filter by all,up,down), (sort by timestamp, popularity)
+- My Questions - List of questions asked by a user (sort by timestamp, popularity)
+- Event stats/summary
+- Question stats/summary
+- Date picker in new/edit Event view
 - Update view layouts
