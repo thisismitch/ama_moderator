@@ -1,6 +1,6 @@
 <div class="row Box">
   <div class="small-12 columns">
-    <%= form_for [@question] do |f| %>
+    <%= form_for @question do |f| %>
     <div class="row u-mb-1">
       <div class="small-12 columns">
         <h4>For Event: <%= f.label :copy, @question.event.name %></h4>

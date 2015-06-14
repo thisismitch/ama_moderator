@@ -46,7 +46,7 @@ class QuestionsController < ApplicationController
 
     event_id = @question.event_id
     @question.destroy
-    redirect_to event_path(event_id), notice: "Question destroyed."
+    redirect_to event_path(event_id), notice: "Question was destroyed."
   end
 
   private

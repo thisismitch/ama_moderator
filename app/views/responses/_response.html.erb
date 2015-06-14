@@ -3,13 +3,22 @@
     <div class="small-11 small-offset-1 columns">
       <h4>
         <% if response.anonymous_flag == true %>
-          Anonymous
+        Anonymous
         <% else %>
-          <%= @question.user.name %>
+        <%= @question.user.name %>
         <% end %> responds:
       </h4>
-      <div class="small-10 columns">
-        <p>"<%= response.copy %>"</p>
+      <div class="small-10 columns u-mb-2">
+        <div class="row u-mb-1">
+          <p>"<%= response.copy %>"</p>
+        </div>
+        <div class="row">
+          <% if policy(response).edit? %>
+          <p class="small">
+            <%= link_to 'Edit Response', edit_response_path(response.id) %>
+          </p>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

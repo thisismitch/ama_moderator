@@ -24,12 +24,30 @@ class ResponsesController < ApplicationController
   end
 
   def destroy
+    authorize(@response)
+    
+    question_id = @response.question_id
+    @response.destroy
+    redirect_to question_responses_path(question_id), notice: "Response was destroyed."
   end
 
   def edit
+    authorize(@response)
+    @question = @response.question
+    @user = @response.user
+    @responses = @question.responses
   end
 
   def update
+    authorize(@response)
+
+    @response.update(response_params)
+
+    if @response.errors.any?
+      redirect_to :back, alert: "Error: #{@response.errors.full_messages.to_sentence}"
+    else
+      redirect_to question_responses_path(@response.question_id), notice: 'Response was updated.'
+    end
   end
 
   private

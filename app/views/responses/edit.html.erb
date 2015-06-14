@@ -1,2 +1,11 @@
-<h1>Responses#edit</h1>
-<p>Find me in app/views/responses/edit.html.erb</p>
+<div class="row">
+  <div class="small-12 columns">
+    <h2>Edit Response</h2>
+  </div>
+</div>
+
+<%= render @question %>
+<%= render 'edit_form' %>
+<% if @question.responses.count > 0 %>
+  <%= render @responses %>
+<% end %>
