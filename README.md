@@ -17,6 +17,7 @@ Google+ must be enabled.
 
 ## Need to Implement
 
+- Disable actions on closed events
 - My Votes - List of questions voted on by a user (filter by all,up,down), (sort by timestamp, popularity)
 - My Questions - List of questions asked by a user (sort by timestamp, popularity)
 - Event stats/summary
