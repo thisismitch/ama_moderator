@@ -5,7 +5,7 @@
         <% if response.anonymous_flag == true %>
         Anonymous
         <% else %>
-        <%= @question.user.name %>
+        <%= response.user.name %>
         <% end %> responds:
       </h4>
       <div class="small-10 columns u-mb-2">
