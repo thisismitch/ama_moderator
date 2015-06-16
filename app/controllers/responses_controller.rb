@@ -9,7 +9,7 @@ class ResponsesController < ApplicationController
 
   def new
     @user = current_user
-    @responses = @question.responses
+    @responses = @question.responses  # load existing responses
     @response = @question.responses.new
   end
 
