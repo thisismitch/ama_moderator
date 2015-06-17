@@ -14,7 +14,7 @@ class ResponsesController < ApplicationController
   end
 
   def create
-    @response = @question.responses.create(copy: response_params[:copy], anonymous_flag: response_params[:anonymous_flag], question_id: @question.id, user_id: current_user.id)
+    @response = @question.responses.create(response_params.merge(question_id: @question.id, user_id: current_user.id))
 
     if @response.errors.any?
       redirect_to :back, alert: "Error: " + @response.errors.full_messages.to_sentence

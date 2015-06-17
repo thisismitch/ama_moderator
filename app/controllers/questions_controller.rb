@@ -16,7 +16,7 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = @event.questions.create(copy: question_params[:copy], anonymous_flag: question_params[:anonymous_flag], event_id: @event.id, user_id: current_user.id)
+    @question = @event.questions.create(question_params.merge(event_id: @event.id, user_id: current_user.id))
     authorize(@question)
     
     if @question.errors.any?
