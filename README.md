@@ -17,10 +17,12 @@ Google+ must be enabled.
 
 ## Need to Implement
 
-- Disable actions on closed events
+- Add email domain validation to user model (allow restricting to a particular domain)
 - My Votes - List of questions voted on by a user (filter by all,up,down), (sort by timestamp, popularity)
 - My Questions - List of questions asked by a user (sort by timestamp, popularity)
 - Event stats/summary
 - Question stats/summary
-- Date picker in new/edit Event view
+- Date picker in new/edit Event view (and sort events by scheduled time)
 - Update view layouts
+
+- Add google profile images to questions and responses?
