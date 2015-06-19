@@ -13,9 +13,18 @@ ENV variables required for google-oauth2 omniauth:
 - `GOOGLE_CLIENT_ID`
 - `GOOGLE_CLIENT_SECRET`
 
-Google+ must be enabled.
+Google+ API must be enabled for your application.
+
+### Devise Secret
+
+In production, ENV variable for Devise secret key must be set:
+
+- `DEVISE_SECRET`
+
+For example, `export DEVISE_SECRET='fb1a9c20d9389e4354b11d96b44faee82a741249dc4a1178fede7c26b05a90417f4a18ccc9fd45af06e9bdc486c4edad01bc69617d7ef4f7a516bd3a41983a7c'`
 
 ## Notes
+
 
 ### Email Domain Validation
 
@@ -23,7 +32,6 @@ To restrict Google OAuth2 to a particular hosted domain, set the **HD** environm
 
 ## Need to Implement
 
-- Add email domain validation to user model (allow restricting to a particular domain)
 - My Votes - List of questions voted on by a user (filter by all,up,down), (sort by timestamp, popularity)
 - My Questions - List of questions asked by a user (sort by timestamp, popularity)
 - Event stats/summary
@@ -32,4 +40,4 @@ To restrict Google OAuth2 to a particular hosted domain, set the **HD** environm
 - Update view layouts
 
 - Add google profile images to questions and responses?
-- Add usage
+- Add usage messages
