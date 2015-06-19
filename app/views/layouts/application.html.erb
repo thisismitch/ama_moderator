@@ -32,7 +32,7 @@
 <%= yield %>
 
 <% if user_signed_in? %>
-<div class="row">
+<div class="row u-mb-3">
   <div class="small-12 columns">
     <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
   </div>

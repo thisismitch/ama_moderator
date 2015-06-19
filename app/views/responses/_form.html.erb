@@ -1,33 +1,32 @@
 <div class="row">
-<div class="small-11 small-offset-1 columns">
-<div class="row Box u-mb-5">
-  <div class="small-12 columns">
-    <%= form_for [@question, @response] do |f| %>
-    <div class="row u-mb-1">
+  <div class="small-11 small-offset-1 columns">
+    <div class="row Box u-mb-5">
       <div class="small-12 columns">
-        <div class="floatlabel-wrapper required" style="position:relative">
-          <%= f.text_area :copy, placeholder: 'Response'%>
+        <%= form_for [@question, @response] do |f| %>
+        <div class="row u-mb-1">
+          <div class="small-12 columns">
+            <div class="floatlabel-wrapper required" style="position:relative">
+              <%= f.text_area :copy, placeholder: 'Response'%>
+            </div>
+          </div>
         </div>
+        <div class="row">
+          <div class="small-6 columns">
+            <div class="checkbox">
+              <%= f.check_box :anonymous_flag, value: true %>
+              <span></span>
+              <%= f.label :anonymous_flag, 'Anonymous' %>
+            </div>
+          </div>
+          <div class="small-1 small-offset-2 columns">
+            <p>250</p>
+          </div>
+          <div class="small-3 columns">
+            <%= f.submit 'Submit Response', class: "Button Button--green Button--fullWidth" %>
+          </div>
+        </div>
+        <% end %>
       </div>
     </div>
-
-    <div class="row">
-      <div class="small-6 columns">
-        <div class="checkbox">
-          <%= f.check_box :anonymous_flag, value: true %>
-          <span></span>
-          <%= f.label :anonymous_flag, 'Anonymous' %>
-        </div>
-      </div>
-    <div class="small-1 small-offset-2 columns">
-      <p>250</p>
-    </div>
-    <div class="small-3 columns">
-      <%= f.submit 'Submit Response', class: "Button Button--green Button--fullWidth" %>
-    </div>
-    </div>
-    <% end %>
   </div>
-</div>
-</div>
 </div>
