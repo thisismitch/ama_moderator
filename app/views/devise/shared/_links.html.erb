@@ -1,5 +1,8 @@
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider) %><br />
+    <p><%= link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider) %></p>
+    <% if provider == :google_oauth2 && !ENV['HD'].nil? %>
+    <p class="small">Note: Only <%= ENV['HD'] %> addresses are allowed.</p>
+    <% end %>
   <% end -%>
 <% end -%>

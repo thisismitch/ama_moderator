@@ -15,6 +15,12 @@ ENV variables required for google-oauth2 omniauth:
 
 Google+ must be enabled.
 
+## Notes
+
+### Email Domain Validation
+
+To restrict Google OAuth2 to a particular hosted domain, set the **HD** environment variable to the domain. For example, "export HD=domain.com" will only allow "domain.com" addresses to pass Google OAuth2.
+
 ## Need to Implement
 
 - Add email domain validation to user model (allow restricting to a particular domain)
@@ -26,3 +32,4 @@ Google+ must be enabled.
 - Update view layouts
 
 - Add google profile images to questions and responses?
+- Add usage
