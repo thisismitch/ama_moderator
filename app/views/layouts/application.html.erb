@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% if notice %>
+  <% if notice %>
   <div class="Alert Alert--success">
     <div class="Alert-content">
       <span class="Alert-icon Icon--check"></span>
@@ -15,29 +15,52 @@
       <a class="Alert-close Icon--close"></a>
     </div>
   </div>
-<% end %>
-<% if alert %>
+  <% end %>
+  <% if alert %>
   <div class="Alert Alert--failure">
     <div class="Alert-content">
       <span class="Alert-icon Icon--close"></span>
       <p><%= alert %></p>
     </div>
   </div>
-<% end %>
-<div class="row">
-  <div class="small-12 columns">
-    <h1>Moderator</h1>
+  <% end %>
+  <div class="row">
+    <div class="small-12 columns">
+      <h1>Moderator</h1>
+    </div>
   </div>
-</div>
-<%= yield %>
+  <% if user_signed_in? %>
+  <div class="row">
+    <div class="small-3 columns">
+      <nav class="SideNav">
+      <h3>Your Stats:</h3>
+        <ul>
+          <li><%= "#{current_user.votes.count.to_s} #{'vote'.pluralize(current_user.votes.count)}" %></li>
+          <li><%= "#{current_user.questions.count.to_s} #{'question'.pluralize(current_user.questions.count)}" %></li>
+        </ul>
 
-<% if user_signed_in? %>
-<div class="row u-mb-3">
-  <div class="small-12 columns">
-    <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+        <h3>Pick an event</h3>
+        <ul>
+          <li class="active"><a href="#">Recent Event 1</a></li>
+          <li ><a href="#">Old Event</a></li>
+        </ul>
+
+        <h3>Session</h3>
+        <ul>
+          <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="small-9 columns">
+      <%= yield %>
+    </div>
   </div>
-</div>
-<% end %>
-
+  <% else %>
+    <div class="row">
+      <div class="small-12 columns">
+      <%= yield %>
+      </div>
+    </div>
+  <% end %>
 </body>
 </html>

@@ -1,32 +1,19 @@
-<div class="row u-dividerBottomSmall">
+<div class="row u-dividerBottomSmall u-mb-3">
   <div class="small-12 columns">
     <div class="row">
       <div class="small-12 columns">
         <h4>
           <% if question.anonymous_flag == true %>
-            Anonymous
+          Anonymous
           <% else %>
-            <%= question.user.name %>
+          <%= question.user.name %>
           <% end %> asks:
         </h4>
       </div>
     </div>
-    <div class="row">
+    <div class="row u-mb-1">
       <div class="small-10 columns">
         <p>"<%= question.copy %>"</p>
-        <div class="row u-mt-2">
-          <div class="small-6 columns">
-            <p class="small">
-            <% if policy(question).edit? %>
-              <%= link_to 'Edit Question', edit_question_path(question.id) %>
-            <% end %>
-            <% if question.responses.count > 0 %>
-              <%= link_to "View #{'response'.pluralize(question.responses.count)} (#{question.responses.count.to_s})", question_responses_path(question.id) %>
-            <% end %>
-              <%= link_to 'Post a response', new_question_response_path(question.id) %>
-            </p>
-          </div>
-        </div>
       </div>
       <div class="small-2 columns">
         <div class="row u-mb-2">
@@ -34,17 +21,30 @@
           <% if @user.votes.where("question_id = ?", question.id).where("type_of LIKE ?", 'up').empty? %>
           <%= link_to '', upvote_question_path(question.id), { method: :post, class: 'Button Button--outline Button--green Button--icon Icon--check', :'data-toggle' => 'tooltip', :'data-placement' => 'top', title: 'Upvote' } %>
           <% else %>
-            <a class="Button Button--green Button--icon Icon--check"></a>
+          <a class="Button Button--green Button--icon Icon--check"></a>
           <% end %>
         </div>
         <div class="row u-mb-2">
           <%= pluralize(question.votes.where("type_of LIKE ?", 'down').count, 'vote') %>
           <% if @user.votes.where("question_id = ?", question.id).where("type_of LIKE ?", 'down').empty? %>
-            <%= link_to '', downvote_question_path(question.id), { method: :post, class: 'Button Button--outline Button--red Button--icon Icon--close', :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', title: 'Downvote' } %>
+          <%= link_to '', downvote_question_path(question.id), { method: :post, class: 'Button Button--outline Button--red Button--icon Icon--close', :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', title: 'Downvote' } %>
           <% else %>
-            <a class="Button Button--red Button--icon Icon--close"></a>
+          <a class="Button Button--red Button--icon Icon--close"></a>
           <% end %>
         </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-6 columns">
+        <p class="small">
+          <% if policy(question).edit? %>
+          <%= link_to 'Edit Question', edit_question_path(question.id) %>
+          <% end %>
+          <% if question.responses.count > 0 %>
+          <%= link_to "View #{'response'.pluralize(question.responses.count)} (#{question.responses.count.to_s})", question_responses_path(question.id) %>
+          <% end %>
+          <%= link_to 'Post a response', new_question_response_path(question.id) %>
+        </p>
       </div>
     </div>
   </div>
