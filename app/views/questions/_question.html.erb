@@ -1,13 +1,17 @@
-<div class="row u-mb-5">
-  <div class="u-dividerBottomSmall">
-    <div class="small-12 columns">
-      <h4>
-        <% if question.anonymous_flag == true %>
-          Anonymous
-        <% else %>
-          <%= question.user.name %>
-        <% end %> asks:
-      </h4>
+<div class="row u-dividerBottomSmall">
+  <div class="small-12 columns">
+    <div class="row">
+      <div class="small-12 columns">
+        <h4>
+          <% if question.anonymous_flag == true %>
+            Anonymous
+          <% else %>
+            <%= question.user.name %>
+          <% end %> asks:
+        </h4>
+      </div>
+    </div>
+    <div class="row">
       <div class="small-10 columns">
         <p>"<%= question.copy %>"</p>
         <div class="row u-mt-2">
