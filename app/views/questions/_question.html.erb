@@ -12,33 +12,25 @@
       </div>
     </div>
     <div class="row u-mb-1">
-      <div class="small-7 columns">
+      <div class="small-10 columns">
         <p>"<%= question.copy %>"</p>
       </div>
-      <div class="small-5 columns voting">
+      <div class="small-2 columns">
         <div class="row u-mb-2">
-          <div class="small-12 columns">
-            <span class="u-mr-2">
-              <%= pluralize(question.votes.where("type_of LIKE ?", 'up').count, 'Upvote') %>
-              <% if @user.votes.where("question_id = ?", question.id).where("type_of LIKE ?", 'up').empty? %>
-              <%= link_to '', upvote_question_path(question.id), { method: :post, class: 'Button Button--outline Button--green Button--icon Icon--arrowUp', :'data-toggle' => 'tooltip', :'data-placement' => 'top', title: 'Upvote' } %>
-              <% else %>
-              <a class="Button Button--green Button--icon Icon--arrowUp"></a>
-              <% end %>
-            </span>
-            <%= pluralize(question.votes.where("type_of LIKE ?", 'down').count, 'Downvote') %>
-            <% if @user.votes.where("question_id = ?", question.id).where("type_of LIKE ?", 'down').empty? %>
-            <%= link_to '', downvote_question_path(question.id), { method: :post, class: 'Button Button--outline Button--red Button--icon Icon--arrowDown', :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', title: 'Downvote' } %>
-            <% else %>
-            <a class="Button Button--red Button--icon Icon--arrowDown"></a>
-            <% end %>
-          </div>
+          <%= pluralize(question.votes.where("type_of LIKE ?", 'up').count, 'vote') %>
+          <% if @user.votes.where("question_id = ?", question.id).where("type_of LIKE ?", 'up').empty? %>
+          <%= link_to '', upvote_question_path(question.id), { method: :post, class: 'Button Button--outline Button--green Button--icon Icon--check', :'data-toggle' => 'tooltip', :'data-placement' => 'top', title: 'Upvote' } %>
+          <% else %>
+          <a class="Button Button--green Button--icon Icon--check"></a>
+          <% end %>
         </div>
-        <div class="row u-mb-2 ">
-          <div class="small-12 columns">
-            <div class="barGraph" data-votes-up="<%= question.votes.where("type_of LIKE ?", 'up').count %>" data-votes-down="<%= question.votes.where("type_of LIKE ?", 'down').count %>">
-            </div>
-          </div>
+        <div class="row u-mb-2">
+          <%= pluralize(question.votes.where("type_of LIKE ?", 'down').count, 'vote') %>
+          <% if @user.votes.where("question_id = ?", question.id).where("type_of LIKE ?", 'down').empty? %>
+          <%= link_to '', downvote_question_path(question.id), { method: :post, class: 'Button Button--outline Button--red Button--icon Icon--close', :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', title: 'Downvote' } %>
+          <% else %>
+          <a class="Button Button--red Button--icon Icon--close"></a>
+          <% end %>
         </div>
       </div>
     </div>
