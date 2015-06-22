@@ -15,21 +15,22 @@
       <div class="small-10 columns">
         <p>"<%= question.copy %>"</p>
       </div>
-      <div class="small-2 columns">
+      <div class="small-2 columns u-textAlignCenter">
         <div class="row u-mb-2">
-          <%= pluralize(question.votes.where("type_of LIKE ?", 'up').count, 'vote') %>
           <% if @user.votes.where("question_id = ?", question.id).where("type_of LIKE ?", 'up').empty? %>
-          <%= link_to '', upvote_question_path(question.id), { method: :post, class: 'Button Button--outline Button--green Button--icon Icon--check', :'data-toggle' => 'tooltip', :'data-placement' => 'top', title: 'Upvote' } %>
+          <%= link_to '', upvote_question_path(question.id), { method: :post, class: 'Button Button--outline Button--green Button--icon Icon--arrowUp', :'data-toggle' => 'tooltip', :'data-placement' => 'top', title: 'Upvote' } %>
           <% else %>
-          <a class="Button Button--green Button--icon Icon--check"></a>
+          <a class="Button Button--green Button--icon Icon--arrowUp"></a>
           <% end %>
         </div>
         <div class="row u-mb-2">
-          <%= pluralize(question.votes.where("type_of LIKE ?", 'down').count, 'vote') %>
+        <p><%= question.votes.where("type_of LIKE ?", 'up').count - question.votes.where("type_of LIKE ?", 'down').count %></p>
+        </div>
+        <div class="row u-mb-2">
           <% if @user.votes.where("question_id = ?", question.id).where("type_of LIKE ?", 'down').empty? %>
-          <%= link_to '', downvote_question_path(question.id), { method: :post, class: 'Button Button--outline Button--red Button--icon Icon--close', :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', title: 'Downvote' } %>
+          <%= link_to '', downvote_question_path(question.id), { method: :post, class: 'Button Button--outline Button--red Button--icon Icon--arrowDown', :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', title: 'Downvote' } %>
           <% else %>
-          <a class="Button Button--red Button--icon Icon--close"></a>
+          <a class="Button Button--red Button--icon Icon--arrowDown"></a>
           <% end %>
         </div>
       </div>
