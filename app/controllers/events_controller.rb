@@ -1,8 +1,8 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:edit, :show, :update, :destroy, :close, :open]
+  before_action :set_events
 
   def index
-  	@events = Event.all.reverse_order
   end
 
   def show
@@ -71,5 +71,9 @@ class EventsController < ApplicationController
 
   def set_event
     @event = Event.find(params[:id])
+  end
+
+  def set_events
+    @events = Event.all
   end
 end

@@ -1,0 +1,28 @@
+<div class="small-3 columns">
+  <nav class="SideNav">
+    <h3>Pick an event</h3>
+    <ul>
+    <% @events.last(10).reverse.each do |event| %>
+      <% if @event.nil? %>
+      <li><%= link_to event.name, event_path(event.id) %></li>
+      <% else %>
+        <% if event.id == @event.id %>
+      <li class="is-active"><%= link_to event.name, event_path(event.id) %></li>
+        <% else %>
+      <li><%= link_to event.name, event_path(event.id) %></li>
+        <% end %>
+      <% end %>
+    <% end %>
+      <li><%= link_to 'Show All', events_path %></li>
+    </ul>
+    <h3>Your Stats:</h3>
+    <ul>
+      <li><%= "#{current_user.votes.count.to_s} #{'vote'.pluralize(current_user.votes.count)}" %></li>
+      <li><%= "#{current_user.questions.count.to_s} #{'question'.pluralize(current_user.questions.count)}" %></li>
+    </ul>
+    <h3>Session</h3>
+    <ul>
+      <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+    </ul>
+  </nav>
+</div>

@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:edit, :show, :update, :destroy]
   before_action :set_event, only: [:new, :create]
+  before_action :set_events
 
   def index
     @questions = Question.all.reverse_order
@@ -63,6 +64,10 @@ class QuestionsController < ApplicationController
 
   def set_event
     @event = Event.find(params[:event_id])
+  end
+
+  def set_events
+    @events = Event.all
   end
 
 

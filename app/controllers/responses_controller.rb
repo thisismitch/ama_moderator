@@ -1,14 +1,17 @@
 class ResponsesController < ApplicationController
   before_action :set_response, only: [:edit, :update, :destroy]
   before_action :set_question, only: [:index, :new, :create]
+  before_action :set_events
 
   def index
     @user = current_user
     @responses = @question.responses
+    @event = @question.event
   end
 
   def new
     @user = current_user
+    @event = @question.event
     @responses = @question.responses  # load existing responses
     @response = @question.responses.new
   end
@@ -34,6 +37,7 @@ class ResponsesController < ApplicationController
   def edit
     authorize(@response)
     @question = @response.question
+    @event = @question.event
     @user = @response.user
     @responses = @question.responses
   end
@@ -62,5 +66,9 @@ class ResponsesController < ApplicationController
 
   def set_question
     @question = Question.find(params[:id])
+  end
+
+  def set_events
+    @events = Event.all
   end
 end
