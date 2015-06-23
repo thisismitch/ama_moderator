@@ -17,8 +17,22 @@
       <li class='is-active'><%= link_to 'Show All', events_path %></li>
     <% else %>
       <li><%= link_to 'Show All', events_path %></li>
+    <% end %> 
+    </ul>
+
+    
+    <% if !@event.nil? %>
+    <ul>
+    <% if params[:sort] == 'date' %>
+      <li><%= link_to 'Sort by popularity', event_path(@event.id) %></li>
+      <li class="is-active"><%= link_to 'Sort by date', event_path(@event.id, sort: 'date') %></li>
+    <% else %>
+      <li class="is-active"><%= link_to 'Sort by popularity', event_path(@event.id) %></li>
+      <li><%= link_to 'Sort by date', event_path(@event.id, sort: 'date') %></li>
     <% end %>
     </ul>
+    <% end %>
+
     <h3>Your stats:</h3>
     <ul>
       <li><%= "#{current_user.votes.count.to_s} #{'vote'.pluralize(current_user.votes.count)}" %></li>

@@ -6,8 +6,14 @@ class EventsController < ApplicationController
   end
 
   def show
-   	@questions = @event.questions.reverse_order
+   	@questions = @event.questions
     @user = current_user
+
+    if params[:sort] == 'date'
+      @questions = @questions.reverse
+    else
+      @questions = @questions.sort_by(&:score).reverse  # popularity by default
+    end
   end
 
   def new

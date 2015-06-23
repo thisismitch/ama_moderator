@@ -7,4 +7,16 @@ class Question < ActiveRecord::Base
   has_many :votes
   has_many :comments
   has_many :responses
+
+  def upvotes
+    votes.where("type_of LIKE ?", 'up').count 
+  end
+
+  def downvotes
+    votes.where("type_of LIKE ?", 'down').count
+  end
+
+  def score
+    self.upvotes - self.downvotes
+  end
 end

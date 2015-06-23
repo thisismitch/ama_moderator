@@ -24,7 +24,7 @@
           <% end %>
         </div>
         <div class="row u-mb-2">
-        <p><%= question.votes.where("type_of LIKE ?", 'up').count - question.votes.where("type_of LIKE ?", 'down').count %></p>
+        <p><%= question.score %></p>
         </div>
         <div class="row u-mb-2">
           <% if @user.votes.where("question_id = ?", question.id).where("type_of LIKE ?", 'down').empty? %>
