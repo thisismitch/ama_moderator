@@ -22,6 +22,7 @@
 
     
     <% if !@event.nil? %>
+    <% if !@event.id.nil? %>
     <ul>
     <% if params[:sort] == 'date' %>
       <li><%= link_to 'Sort by popularity', event_path(@event.id) %></li>
@@ -31,6 +32,7 @@
       <li><%= link_to 'Sort by date', event_path(@event.id, sort: 'date') %></li>
     <% end %>
     </ul>
+    <% end %>
     <% end %>
 
     <h3>Your stats:</h3>
