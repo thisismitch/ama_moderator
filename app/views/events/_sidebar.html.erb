@@ -13,13 +13,23 @@
         <% end %>
       <% end %>
     <% end %>
+    <% if current_page?(url_for(:controller => 'events', :action => 'index')) %>
+      <li class='is-active'><%= link_to 'Show All', events_path %></li>
+    <% else %>
       <li><%= link_to 'Show All', events_path %></li>
+    <% end %>
     </ul>
-    <h3>Your Stats:</h3>
+    <h3>Your stats:</h3>
     <ul>
       <li><%= "#{current_user.votes.count.to_s} #{'vote'.pluralize(current_user.votes.count)}" %></li>
       <li><%= "#{current_user.questions.count.to_s} #{'question'.pluralize(current_user.questions.count)}" %></li>
     </ul>
+    <% if policy(@events).create? %>
+    <h3>Admin</h3>
+    <ul>
+      <li><%= link_to 'Create Event', new_event_path %></li>
+    </ul>
+    <% end %>
     <h3>Session</h3>
     <ul>
       <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>

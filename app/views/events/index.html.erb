@@ -4,7 +4,7 @@
   </div>
   <% if policy(@events).create? %>
   <div class="small-2 small-offset-4 columns">
-    <p><%= link_to 'Create Event', new_event_path, class: 'Button Button--green Button--fullWidth'%></p>
+    <%= link_to 'Create Event', new_event_path, class: 'Button Button--green Button--fullWidth'%>
   </div>
   <% end %>
 </div>
