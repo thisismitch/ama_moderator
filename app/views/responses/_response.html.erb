@@ -1,5 +1,9 @@
 <% if !response.id.nil? %> <%# don't render new response %>
-<div class="row u-dividerBottomSmall u-mb-4">
+  <% if params[:response] == response.id.to_s %>
+<div class="row u-dividerBottomSmall u-mb-4 is-active" id="response_<%= response.id.to_s %>">
+  <% else %>
+<div class="row u-dividerBottomSmall u-mb-4" id="response_<%= response.id.to_s %>">
+  <% end %>
   <div class="small-11 small-offset-1 columns">
     <div class="row">
     <h4>

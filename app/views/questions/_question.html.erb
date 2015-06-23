@@ -1,4 +1,8 @@
-<div class="row u-dividerBottomSmall u-mb-3">
+  <% if params[:question] == question.id.to_s %>
+<div class="row u-dividerBottomSmall u-mb-3 is-active" id="question_<%= question.id.to_s %>">
+  <% else %>
+<div class="row u-dividerBottomSmall u-mb-3" id="question_<%= question.id.to_s %>">
+  <% end %>
   <div class="small-12 columns">
     <div class="row">
       <div class="small-12 columns">

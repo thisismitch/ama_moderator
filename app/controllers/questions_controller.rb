@@ -23,7 +23,7 @@ class QuestionsController < ApplicationController
     if @question.errors.any?
       redirect_to :back, alert: "Error: " + @question.errors.full_messages.to_sentence
     else
-      redirect_to @event, notice: 'Question was created.'
+      redirect_to event_path(@question.event_id, anchor: "question_#{@question.id}"), notice: 'Question was created.'
     end
   end
 
@@ -40,7 +40,7 @@ class QuestionsController < ApplicationController
     if @question.errors.any?
       redirect_to :back, alert: "Error: #{@question.errors.full_messages.to_sentence}"
     else
-      redirect_to event_path(@question.event_id), notice: 'Question was updated.'
+      redirect_to event_path(@question.event_id, anchor: "question_#{@question.id}"), notice: 'Question was updated.'
     end
   end
 

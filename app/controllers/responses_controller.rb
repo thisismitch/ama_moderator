@@ -22,7 +22,7 @@ class ResponsesController < ApplicationController
     if @response.errors.any?
       redirect_to :back, alert: "Error: " + @response.errors.full_messages.to_sentence
     else
-      redirect_to question_responses_path(@question.id), notice: 'Response was created.'
+      redirect_to question_responses_path(@question.id, anchor: "response_#{@response.id}"), notice: 'Response was created.'
     end
   end
 
@@ -50,7 +50,7 @@ class ResponsesController < ApplicationController
     if @response.errors.any?
       redirect_to :back, alert: "Error: #{@response.errors.full_messages.to_sentence}"
     else
-      redirect_to question_responses_path(@response.question_id), notice: 'Response was updated.'
+      redirect_to question_responses_path(@response.question_id, anchor: "response_#{@response.id}"), notice: 'Response was updated.'
     end
   end
 
