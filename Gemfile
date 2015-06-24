@@ -43,6 +43,10 @@ group :development, :test do
   gem 'spring'
 end
 
+group :production do
+  gem 'pg'
+end
+
 # Authentication - OAuth
 gem 'therubyracer'
 gem 'devise'

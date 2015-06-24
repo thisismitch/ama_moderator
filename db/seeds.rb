@@ -1,6 +1,6 @@
-puts "Destroying data"
-User.destroy_all
-Event.destroy_all
-Question.destroy_all
+# make first user admin
+puts 'make first user admin'
+user = User.first
+user.update(admin: true)
 
 # puts "Adding sample data"
