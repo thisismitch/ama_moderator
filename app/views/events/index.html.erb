@@ -22,13 +22,14 @@
       <tr>
         <td>
           <div class="Table-actions">
-          <h3><%= link_to event.name, event_path(event.id) %></h3>
+          <h3><%= link_to event.name, event_path(event.id) %> 
+          <% if event.closed %>
+          <span class="Badge Badge--uppercase Badge--grey">Closed</span>
+          <% end %>
+          </h3>
           <div>
             <h4>
               <%= event.scheduled_datetime %>
-              <% if event.closed %>
-                (Closed)
-              <% end %>
             </h4>
           </div>
           <p class="small"><%= event.description %></p>
