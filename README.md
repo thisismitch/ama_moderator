@@ -34,10 +34,12 @@ To restrict Google OAuth2 to a particular hosted domain, set the **HD** environm
 
 - My Votes - List of questions voted on by a user (filter by all,up,down), (sort by timestamp, popularity)
 - My Questions - List of questions asked by a user (sort by timestamp, popularity)
-- Event stats/summary
-- Question stats/summary
 - Date picker in new/edit Event view (and sort events by scheduled time)
 - Update view layouts
 
 - Add google profile images to questions and responses?
 - Add usage messages
+
+## Author
+
+Mitchell Anicas thisismitch@gmail.com / manicas@digitalocean.com
