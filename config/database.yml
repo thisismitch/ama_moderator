@@ -25,6 +25,6 @@ production:
   encoding: utf8
   database: ama_moderator
   pool: 5
-  username: ENV['APP_DATABASE_USER']
-  password: ENV['APP_DATABASE_PASSWORD']
+  username: <%= ENV['APP_DATABASE_USER'] %>
+  password: <%= ENV['APP_DATABASE_PASSWORD'] %>
   
