@@ -16,6 +16,9 @@
 
 <div class="row u-mb-4 u-dividerTopSmall">
   <div class="small-12 columns">
+  <% if @events.nil? %>
+  <p>There are no events. Ask an admin to create one</p>
+  <% end %>
   <table class="u-mb-5">
     <tbody class="Table-actions">
     <% @events.reverse.each do |event| %>
