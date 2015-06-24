@@ -17,7 +17,11 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = @event.questions.create(question_params.merge(event_id: @event.id, user_id: current_user.id))
+    if question_params[:anonymous_flag] == '1'
+      @question = @event.questions.create(question_params.merge(event_id: @event.id, user_id: User.find_by(name: 'Anonymous').id))
+    else
+      @question = @event.questions.create(question_params.merge(event_id: @event.id, user_id: current_user.id))
+    end
     authorize(@question)
     
     if @question.errors.any?
@@ -35,7 +39,11 @@ class QuestionsController < ApplicationController
   def update
     authorize(@question)
 
-    @question.update(question_params)
+    if question_params[:anonymous_flag] == '1'
+      @question.update(question_params.merge(user_id: User.find_by(name: 'Anonymous').id))
+    else
+      @question.update(question_params)
+    end
 
     if @question.errors.any?
       redirect_to :back, alert: "Error: #{@question.errors.full_messages.to_sentence}"
@@ -69,6 +77,4 @@ class QuestionsController < ApplicationController
   def set_events
     @events = Event.all
   end
-
-
 end

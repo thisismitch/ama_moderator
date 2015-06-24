@@ -17,7 +17,11 @@ class ResponsesController < ApplicationController
   end
 
   def create
-    @response = @question.responses.create(response_params.merge(question_id: @question.id, user_id: current_user.id))
+    if response_params[:anonymous_flag] == '1'
+      @response = @question.responses.create(response_params.merge(question_id: @question.id, user_id: User.find_by(name: 'Anonymous').id))
+    else
+      @response = @question.responses.create(response_params.merge(question_id: @question.id, user_id: current_user.id))
+    end
 
     if @response.errors.any?
       redirect_to :back, alert: "Error: " + @response.errors.full_messages.to_sentence
@@ -44,8 +48,11 @@ class ResponsesController < ApplicationController
 
   def update
     authorize(@response)
-
-    @response.update(response_params)
+    if response_params[:anonymous_flag] == '1'
+      @response.update(response_params.merge(user_id: User.find_by(name: 'Anonymous').id))
+    else
+      @response.update(response_params)
+    end
 
     if @response.errors.any?
       redirect_to :back, alert: "Error: #{@response.errors.full_messages.to_sentence}"

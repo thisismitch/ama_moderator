@@ -51,6 +51,11 @@
           <%= link_to 'Post a response', new_question_response_path(question.id) %>
         </p>
       </div>
+      <% if policy(question).destroy? %>
+      <div class="small-3 columns">
+      <p class="small"><%= link_to '[Admin: Destroy Question]', question_path(question.id), method: :delete %></p>
+      </div>
+      <% end %>
     </div>
   </div>
 </div>

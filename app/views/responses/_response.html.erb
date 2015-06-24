@@ -18,11 +18,14 @@
       <p>"<%= response.copy %>"</p>
     </div>
     <div class="row u-mb-2">
+    <p class="small">
       <% if policy(response).edit? %>
-      <p class="small">
-        <%= link_to 'Edit Response', edit_response_path(response.id) %>
-      </p>
+      <%= link_to 'Edit Response', edit_response_path(response.id) %>
       <% end %>
+      <% if policy(response).destroy? %>
+      <%= link_to '[Admin: Destroy Response]', response_path(response.id), method: :delete %>
+      <% end %>
+      </p>
     </div>
   </div>
 </div>
