@@ -16,8 +16,8 @@
 
 <div class="row u-mb-4 u-dividerTopSmall">
   <div class="small-12 columns">
-  <% if @events.nil? %>
-  <p>There are no events. Ask an admin to create one</p>
+  <% if @events.empty? %>
+  <h3>There are no events yet. Ask an admin to create one</h3>
   <% end %>
   <table class="u-mb-5">
     <tbody class="Table-actions">

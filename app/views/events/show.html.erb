@@ -15,7 +15,7 @@
     <% if !@event.closed %>
     <%= link_to 'Ask Question', new_event_question_path(@event.id), class: 'Button Button--green Button--fullWidth'%>
     <% else %>
-    <a class="Button is-disabled Button--green Button--fullWidth data-toggle="tooltip" data-placement="top" title="Event is closed">Ask Question</a>
+    <a class="Button is-disabled Button--green Button--fullWidth" data-toggle="tooltip" data-placement="top" title="Event is closed">Ask Question</a>
     <% end %>
     </p>
   </div>
@@ -35,4 +35,12 @@
     <p><%= "#{pluralize(@event.vote_count, 'vote')} on #{pluralize(@questions.length, 'question')} from #{pluralize(@event.participant_count, 'person')}." %></p>
   </div>
 </div>
+<% if @questions.empty? %>
+<div class="row u-mb-2">
+  <div class="small-12 columns">
+  <h3>There are no questions in this event yet. Ask one!</h3>
+  </div>
+</div>
+<% end %>
+
 <%= render @questions %>
