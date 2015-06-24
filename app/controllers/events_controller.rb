@@ -3,6 +3,7 @@ class EventsController < ApplicationController
   before_action :set_events
 
   def index
+    set_users_questions_votes_count
   end
 
   def show
@@ -81,5 +82,11 @@ class EventsController < ApplicationController
 
   def set_events
     @events = Event.all
+  end
+
+  def set_users_questions_votes_count
+    @users_count = User.count
+    @questions_count = Question.count
+    @votes_count = Vote.count
   end
 end

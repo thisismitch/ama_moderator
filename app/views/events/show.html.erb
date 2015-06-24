@@ -30,4 +30,9 @@
   </div>
   <% end %>
 </div>
+<div class="row u-mb-3">
+  <div class="small-12 columns">
+    <p><%= "#{@event.vote_count} votes on #{@questions.length} questions from #{@event.participant_count} people." %></p>
+  </div>
+</div>
 <%= render @questions %>

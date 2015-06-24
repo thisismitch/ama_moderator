@@ -37,8 +37,8 @@
 
     <h3>Your stats:</h3>
     <ul>
-      <li><%= "#{current_user.votes.count.to_s} #{'vote'.pluralize(current_user.votes.count)}" %></li>
-      <li><%= "#{current_user.questions.count.to_s} #{'question'.pluralize(current_user.questions.count)}" %></li>
+      <li><%= "#{current_user.votes.count} #{'vote'.pluralize(current_user.votes.count)}" %></li>
+      <li><%= "#{current_user.questions.count} #{'question'.pluralize(current_user.questions.count)}" %></li>
     </ul>
     <% if policy(@events).create? %>
     <h3>Admin</h3>
