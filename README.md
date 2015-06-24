@@ -63,8 +63,7 @@ RAILS_ENV=production rake db:seed
 
 ## Need to Implement
 
-- Admin delete question
-- Flippable feature to that makes anonymous 
+- Make anonymous create user if it doesn't exist
 - My Votes - List of questions voted on by a user (filter by all,up,down), (sort by timestamp, popularity)
 - My Questions - List of questions asked by a user (sort by timestamp, popularity)
 - Date picker in new/edit Event view (and sort events by scheduled time)
