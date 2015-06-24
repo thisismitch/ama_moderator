@@ -8,13 +8,13 @@
   </div>
   <% end %>
 </div>
-<div class="row u-mb-3">
+<div class="row u-mb-2">
   <div class="small-12 columns">
-    <p><%= "#{@users_count} people have submitted #{@questions_count} questions and cast #{@votes_count} votes." %></p>
+    <p><%= "#{pluralize(@users_count, 'person')} have submitted #{pluralize(@questions_count, 'question')} and cast #{pluralize(@votes_count, 'vote')}" %></p>
   </div>
 </div>
 
-<div class="row u-mb-5">
+<div class="row u-mb-4 u-dividerTopSmall">
   <div class="small-12 columns">
   <table class="u-mb-5">
     <tbody class="Table-actions">

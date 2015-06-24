@@ -1,4 +1,4 @@
-<div class="row u-mb-7">
+<div class="row u-mb-3">
   <div class="small-6 columns">
     <h2><%= @event.name %>
     <% if @event.closed %>
@@ -30,9 +30,9 @@
   </div>
   <% end %>
 </div>
-<div class="row u-mb-3">
+<div class="row u-mb-2">
   <div class="small-12 columns">
-    <p><%= "#{@event.vote_count} votes on #{@questions.length} questions from #{@event.participant_count} people." %></p>
+    <p><%= "#{pluralize(@event.vote_count, 'vote')} on #{pluralize(@questions.length, 'question')} from #{pluralize(@event.participant_count, 'person')}." %></p>
   </div>
 </div>
 <%= render @questions %>

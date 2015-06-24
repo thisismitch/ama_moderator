@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   before_action :set_events
 
   def index
-    set_users_questions_votes_count
+    set_users_questions_votes_count # for stat summary
   end
 
   def show
