@@ -1,0 +1,26 @@
+<tr>
+  <td class="u-textAlignCenter">
+  <% if user.admin %>
+  <a class="Button Button--green Button--icon Icon--check"></a>
+  <% else %>
+  <a class="Button Button--red Button--icon Icon--close"></a>
+  <% end %>
+  </td>
+  <td>
+  <%= user.name %>
+  </td><td class="u-textAlignCenter">
+  <% if user.admin %>
+    <% if current_user.id == user.id %>    
+  <a class="Button is-disabled Button--icon Icon--arrowDown">
+    <% else %>
+  <%= link_to '', user_path(user.id, admin: 'false'), { method: :post, class: 'Button Button--outline Button--red Button--icon Icon--arrowDown', :'data-toggle' => 'tooltip', :'data-placement' => 'top', title: 'Demote' } %>
+    <% end %>
+  <% else %>
+  <%= link_to '', user_path(user.id, admin: 'true'), { method: :post, class: 'Button Button--outline Button--green Button--icon Icon--arrowUp', :'data-toggle' => 'tooltip', :'data-placement' => 'top', title: 'Promote' } %>
+  <% end %>
+  </td><td>
+  <%= user.email %>
+  </td><td>
+  <%= user.last_sign_in_at.to_s %>
+  </td>
+</tr>
