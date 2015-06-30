@@ -50,12 +50,15 @@ To restrict Google OAuth2 to a particular hosted domain, set the **HD** environm
 
 ```
 RAILS_ENV=production rake assets:precompile
+RAILS_ENV=production rake db:create
 RAILS_ENV=production rake db:migrate
 ```
 
 ### Start Server
 
-Log in, then make yourself admin:
+Start the server.
+
+Log in to create your user. Then make yourself admin and create an anonymous user:
 
 ```
 RAILS_ENV=production rake db:seed
@@ -63,14 +66,13 @@ RAILS_ENV=production rake db:seed
 
 ## Need to Implement
 
+- Add ask question button for open events in index
 - Make anonymous create user if it doesn't exist
+- ? Use modal for new event, question, responses
 - My Votes - List of questions voted on by a user (filter by all,up,down), (sort by timestamp, popularity)
 - My Questions - List of questions asked by a user (sort by timestamp, popularity)
 - Date picker in new/edit Event view (and sort events by scheduled time)
-- Update view layouts
-
 - Add google profile images to questions and responses?
-- Add usage messages
 
 ## Author
 
