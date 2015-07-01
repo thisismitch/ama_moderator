@@ -5,7 +5,7 @@ class Question < ActiveRecord::Base
   belongs_to :user
   belongs_to :event
   has_many :votes, dependent: :destroy
-  has_many :responses
+  has_many :responses, dependent: :destroy
 
   def upvotes
     votes.where("type_of LIKE ?", 'up').count 
