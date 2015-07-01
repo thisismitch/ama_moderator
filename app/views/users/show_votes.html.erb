@@ -1,0 +1,19 @@
+<div class="row u-mb-3">
+  <div class="small-6 columns">
+    <h2>Your Votes</h2>
+  </div>
+</div>
+<div class="row u-mb-2">
+  <div class="small-12 columns">
+    <p><%= "You've cast #{pluralize(@questions.count, 'vote')}." %></p>
+  </div>
+</div>
+<% if @questions.empty? %>
+<div class="row u-mb-2">
+  <div class="small-12 columns">
+  <h3>You haven't cast any votes yet.</h3>
+  </div>
+</div>
+<% end %>
+
+<%= render partial: 'questions/question', collection: @questions, as: :question %>

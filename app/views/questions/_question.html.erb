@@ -42,8 +42,10 @@
     <div class="row">
       <div class="small-6 columns">
         <p class="small">
+            <% if !current_page?(url_for(:controller => 'users', :action => 'show_questions')) && !current_page?(url_for(:controller => 'users', :action => 'show_votes')) %>
           <% if policy(question).edit? %>
           <%= link_to 'Edit Question', edit_question_path(question.id), class: "u-mr-2" %>
+          <% end %>
           <% end %>
           <% if question.responses.count > 0 %>
           <%= link_to "View #{'response'.pluralize(question.responses.count)} (#{question.responses.count.to_s})", question_responses_path(question.id), class: "u-mr-2" %>
@@ -51,10 +53,12 @@
           <%= link_to 'Post a response', new_question_response_path(question.id) %>
         </p>
       </div>
+<% if !current_page?(url_for(:controller => 'users', :action => 'show_questions')) && !current_page?(url_for(:controller => 'users', :action => 'show_votes')) %>
       <% if policy(question).destroy? %>
       <div class="small-3 columns">
       <p class="small"><%= link_to '[Admin: Destroy Question]', question_path(question.id), method: :delete %></p>
       </div>
+      <% end %>
       <% end %>
     </div>
   </div>

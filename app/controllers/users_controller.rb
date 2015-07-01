@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_users
   before_action :set_events
+  before_action :set_user, only: [:show_questions, :show_votes]
 
   def index
     authorize(@users)
@@ -16,6 +17,14 @@ class UsersController < ApplicationController
     else
       redirect_to users_path, notice: "User (#{@user.name}) was updated."
     end
+  end
+
+  def show_questions
+    @questions = @user.questions.reverse
+  end
+
+  def show_votes
+    @questions = Question.last(10) # broken. replace with questions that the user has voted on 
   end
 
   private
