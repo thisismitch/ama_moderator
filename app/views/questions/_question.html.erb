@@ -56,7 +56,7 @@
 <% if !current_page?(url_for(:controller => 'users', :action => 'show_questions')) && !current_page?(url_for(:controller => 'users', :action => 'show_votes')) %>
       <% if policy(question).destroy? %>
       <div class="small-3 columns">
-      <p class="small"><%= link_to '[Admin: Destroy Question]', question_path(question.id), method: :delete %></p>
+      <p class="small"><%= link_to '[Admin: Destroy Question]', question_path(question.id), method: :delete, data: {:confirm => "Are you sure you want to destroy this question?"} %></p>
       </div>
       <% end %>
       <% end %>

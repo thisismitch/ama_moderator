@@ -69,7 +69,6 @@ RAILS_ENV=production rake db:seed
 - Make anonymous create user if it doesn't exist
 - ? Use modal for new event, question, responses
 - My Votes - List of questions voted on by a user (filter by all,up,down), (sort by timestamp, popularity)
-- My Questions - List of questions asked by a user (sort by timestamp, popularity)
 - Date picker in new/edit Event view (and sort events by scheduled time)
 - Add google profile images to questions and responses?
 

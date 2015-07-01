@@ -25,7 +25,7 @@
       <%= f.submit 'Submit Question', class: "Button Button--green Button--fullWidth" %>
       <% elsif @_controller.action_name == 'edit' %>
       <p><%= f.submit 'Update Question', class: "Button Button--green Button--fullWidth" %></p>
-      <p><%= link_to 'Destroy Question', @question, method: :delete, class: "Button Button--outline Button--withIcon Button--red Icon--close Button--fullWidth" %></p>
+      <p><%= link_to 'Destroy Question', @question, method: :delete, class: "Button Button--outline Button--withIcon Button--red Icon--close Button--fullWidth", data: {:confirm => "Are you sure you want to destroy this question?"} %></p>
       <% end %>
     </div>
     <% end %>

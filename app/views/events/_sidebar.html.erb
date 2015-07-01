@@ -38,11 +38,7 @@
     <h3>Your stats:</h3>
     <ul>
       <li><%= "#{current_user.votes.count} #{'vote'.pluralize(current_user.votes.count)}" %></li>
-      <% if current_page?(url_for(:controller => 'users', :action => 'show_questions')) %>
-      <li class="is-active"><%= link_to "#{current_user.questions.count} #{'question'.pluralize(current_user.questions.count)}", user_questions_path(current_user.id)%></li>
-      <% else %>
       <li><%= link_to "#{current_user.questions.count} #{'question'.pluralize(current_user.questions.count)}", user_questions_path(current_user.id)%></li>
-      <% end %>
     </ul>
     <% if policy(@events).create? %>
     <h3>Admin</h3>
