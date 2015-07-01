@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
 
   concern :has_questions do
-    resources :questions, only: [:index, :new, :create]
+    resources :questions, only: [:new, :create]
   end
 
   get '/questions/:id/responses/new', to: 'responses#new', as: 'new_question_response'

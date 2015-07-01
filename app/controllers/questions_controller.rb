@@ -3,10 +3,6 @@ class QuestionsController < ApplicationController
   before_action :set_event, only: [:new, :create]
   before_action :set_events
 
-  def index
-    @questions = Question.all.reverse_order
-  end
-
   def show
     @user = current_user
   end
