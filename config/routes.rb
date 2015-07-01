@@ -28,5 +28,5 @@ Rails.application.routes.draw do
   get '/users', to: 'users#index', as: 'users'
   post '/users/:id', to: 'users#update', as: 'user'
 
-  root 'events#index'
+  root 'events#last'
 end

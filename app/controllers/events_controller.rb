@@ -6,6 +6,14 @@ class EventsController < ApplicationController
     set_users_questions_votes_count # for stat summary
   end
 
+  def last
+    if @events.empty?
+      redirect_to events_path
+    else
+      redirect_to event_path(@events.last) # show most recent event
+    end
+  end
+
   def show
    	@questions = @event.questions
     @user = current_user
