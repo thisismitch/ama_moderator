@@ -66,6 +66,8 @@ RAILS_ENV=production rake db:seed
 
 ## Need to Implement
 
+- Sort events index by most recent
+- Add datetimestamps to posts
 - Make anonymous create user if it doesn't exist
 - ? Use modal for new event, question, responses
 - My Votes - List of questions voted on by a user (filter by all,up,down), (sort by timestamp, popularity)
