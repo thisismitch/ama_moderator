@@ -2,7 +2,7 @@
   <nav class="SideNav">
     <h3>Pick an event</h3>
     <ul>
-    <% @events.last(10).reverse.each do |event| %>
+    <% @events.order(:created_at).reverse_order.first(10).each do |event| %>
       <% if @event.nil? %>
       <li><%= link_to event.name, event_path(event.id) %></li>
       <% else %>

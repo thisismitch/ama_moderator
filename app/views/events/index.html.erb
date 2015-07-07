@@ -21,7 +21,7 @@
   <% end %>
   <table class="u-mb-5">
     <tbody class="Table-actions">
-    <% @events.reverse.each do |event| %>
+    <% @events.order(:created_at).reverse_order.each do |event| %>
       <tr>
         <td>
           <div class="Table-actions">
