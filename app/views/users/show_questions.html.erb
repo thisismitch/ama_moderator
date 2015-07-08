@@ -12,13 +12,25 @@
 </div>
 <div class="row u-mb-2">
   <div class="small-12 columns">
-    <p><%= "You've asked #{pluralize(@questions.count, 'question')}." %></p>
+    <p>
+    <% if current_user.id == @user.id %>
+      <%= "You've asked #{pluralize(@questions.count, 'question')}." %>
+    <% else %>
+      <%= "#{@user.name} has asked #{pluralize(@questions.count, 'question')}." %>
+    <% end %>
+    </p>
   </div>
 </div>
 <% if @questions.empty? %>
 <div class="row u-mb-2">
   <div class="small-12 columns">
-  <h3>You haven't asked any questions yet.</h3>
+  <h3>
+  <% if current_user.id == @user.id %>
+    You haven't asked any questions yet.
+  <% else %>
+    <%= @user.name.possessive %> hasn't asked any questions yet.
+  <% end %>
+  </h3>
   </div>
 </div>
 <% end %>
