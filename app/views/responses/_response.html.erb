@@ -27,7 +27,7 @@
       <% if policy(response).edit? %>
       <%= link_to 'Edit Response', edit_response_path(response.id) %>
       <% end %>
-      <% if policy(response).admin_destroy? %>
+      <% if policy(response).destroy? && current_user.admin %>
       <%= link_to '[Admin: Destroy Response]', response_path(response.id), method: :delete, data: {:confirm => "Are you sure you want to destroy this response?"} %>
       <% end %>
       </p>

@@ -44,7 +44,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="small-6 columns">
+      <div class="small-8 columns">
         <p class="small">
             <% if !current_page?(url_for(:controller => 'users', :action => 'show_questions')) && !current_page?(url_for(:controller => 'users', :action => 'show_votes')) %>
           <% if policy(question).edit? %>
@@ -58,8 +58,8 @@
         </p>
       </div>
 <% if !current_page?(url_for(:controller => 'users', :action => 'show_questions')) && !current_page?(url_for(:controller => 'users', :action => 'show_votes')) %>
-      <% if policy(question).admin_destroy? %>
-      <div class="small-3 columns">
+      <% if policy(question).destroy? && current_user.admin %>
+      <div class="small-4 columns">
       <p class="small"><%= link_to '[Admin: Destroy Question]', question_path(question.id), method: :delete, data: {:confirm => "Are you sure you want to destroy this question?"} %></p>
       </div>
       <% end %>

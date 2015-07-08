@@ -15,11 +15,7 @@ class QuestionPolicy < ApplicationPolicy
   end
 
   def destroy?
-  	(user.id == question.user_id && !question.event.closed)
-  end
-
-  def admin_destroy?
-    user.admin?
+  	(user.id == question.user_id && !question.event.closed) || user.admin?
   end
 
   def new?
