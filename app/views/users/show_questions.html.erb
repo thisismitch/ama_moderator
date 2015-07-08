@@ -1,6 +1,13 @@
 <div class="row u-mb-3">
   <div class="small-6 columns">
-    <h2>Your Questions</h2>
+    <h2>
+    <% if current_user.id == @user.id %>
+      Your
+    <% else %>
+      <%= @user.name.possessive %>
+    <% end %>
+    Questions
+    </h2>
   </div>
 </div>
 <div class="row u-mb-2">

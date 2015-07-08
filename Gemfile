@@ -60,3 +60,5 @@ gem 'pundit'
 # DO Style
 gem 'buoy'
 
+gem 'possessive'
+
