@@ -5,16 +5,17 @@
 <div class="row u-dividerTopSmall u-mb-4" id="response_<%= response.id.to_s %>">
   <% end %>
   <div class="small-11 small-offset-1 columns">
-    <div class="row">
-    <h4>
-      <% if response.anonymous_flag == true %>
-      Anonymous
-      <% else %>
-      <%= response.user.name %>
-      <% end %> responds:
-    </h4>
+    <div class="row u-mb-4">
+      <span class="Ticket-reply">
+        <% if response.anonymous_flag == true %>
+        Anonymous
+        <% else %>
+        <%= response.user.name %>
+        <% end %> responds:
+      </span>
+      <span class="Ticket-timestamp"><%= time_ago_in_words(response.created_at) %> ago</span>
     </div>
-    <div class="row u-mb-2">
+    <div class="row u-mb-3">
       <p>"<%= response.copy %>"</p>
     </div>
     <div class="row u-mb-2">
@@ -22,8 +23,8 @@
       <% if policy(response).edit? %>
       <%= link_to 'Edit Response', edit_response_path(response.id) %>
       <% end %>
-      <% if policy(response).destroy? %>
-      <%= link_to '[Admin: Destroy Response]', response_path(response.id), method: :delete %>
+      <% if policy(response).admin_destroy? %>
+      <%= link_to '[Admin: Destroy Response]', response_path(response.id), method: :delete, data: {:confirm => "Are you sure you want to destroy this response?"} %>
       <% end %>
       </p>
     </div>

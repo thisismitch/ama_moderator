@@ -4,22 +4,23 @@
 <div class="row u-dividerTopSmall u-mb-5" id="question_<%= question.id.to_s %>">
   <% end %>
   <div class="small-12 columns">
-    <div class="row">
+    <div class="row u-mb-4">
       <div class="small-12 columns">
-        <h4>
+        <span class="Ticket-reply">
           <% if question.anonymous_flag == true %>
           Anonymous
           <% else %>
           <%= question.user.name %>
           <% end %> asks:
-        </h4>
+        </span>
+        <span class="Ticket-timestamp"><%= time_ago_in_words(question.created_at) %> ago</span>
       </div>
     </div>
-    <div class="row u-mb-1">
-      <div class="small-10 columns">
+    <div class="row u-mb-2">
+      <div class="small-11 columns">
         <p>"<%= question.copy %>"</p>
       </div>
-      <div class="small-2 columns u-textAlignCenter">
+      <div class="small-1 columns u-textAlignCenter">
         <div class="row u-mb-2">
           <% if @user.votes.where("question_id = ?", question.id).where("type_of LIKE ?", 'up').empty? %>
           <%= link_to '', upvote_question_path(question.id), { method: :post, class: 'Button Button--outline Button--green Button--icon Icon--arrowUp', :'data-toggle' => 'tooltip', :'data-placement' => 'top', title: 'Upvote' } %>
@@ -54,7 +55,7 @@
         </p>
       </div>
 <% if !current_page?(url_for(:controller => 'users', :action => 'show_questions')) && !current_page?(url_for(:controller => 'users', :action => 'show_votes')) %>
-      <% if policy(question).destroy? %>
+      <% if policy(question).admin_destroy? %>
       <div class="small-3 columns">
       <p class="small"><%= link_to '[Admin: Destroy Question]', question_path(question.id), method: :delete, data: {:confirm => "Are you sure you want to destroy this question?"} %></p>
       </div>

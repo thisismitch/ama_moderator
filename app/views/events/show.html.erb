@@ -8,7 +8,7 @@
       <h4>
         <%= @event.scheduled_datetime %>
       </h4>
-    <p class="small"><%= @event.description %></p>
+    <p><%= @event.description %></p>
   </div>
   <div class="small-2 small-offset-3 columns">
     <p>
@@ -32,7 +32,7 @@
 </div>
 <div class="row u-mb-2">
   <div class="small-12 columns">
-    <p><%= "#{pluralize(@event.vote_count, 'vote')} on #{pluralize(@questions.length, 'question')} from #{pluralize(@event.participant_count, 'person')}." %></p>
+    <p class="small"><%= "#{pluralize(@event.vote_count, 'vote')} on #{pluralize(@questions.length, 'question')} from #{pluralize(@event.participant_count, 'person')}." %></p>
   </div>
 </div>
 <% if @questions.empty? %>
