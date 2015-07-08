@@ -7,11 +7,7 @@
     <div class="row u-mb-4">
       <div class="small-12 columns">
         <span class="Ticket-reply">
-          <% if question.anonymous_flag == true %>
-          Anonymous
-          <% else %>
-          <%= question.user.name %>
-          <% end %> asks:
+          <%= question.user.name %> asks:
         </span>
         <span class="Ticket-timestamp"><%= time_ago_in_words(question.created_at) %> ago</span>
       </div>
