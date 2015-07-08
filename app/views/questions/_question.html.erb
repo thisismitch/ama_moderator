@@ -3,7 +3,14 @@
   <% else %>
 <div class="row u-dividerTopSmall u-mb-5" id="question_<%= question.id.to_s %>">
   <% end %>
-  <div class="small-12 columns">
+  <div class="small-1 columns">
+    <% if question.anonymous_flag %>
+      <%= image_tag 'anonymous.png', class: 'profile-image' %>
+    <% else %>
+      <%= image_tag question.user.image_url, class: 'profile-image' %>
+    <% end %>
+  </div>
+  <div class="small-11 columns">
     <div class="row u-mb-4">
       <div class="small-12 columns">
         <span class="Ticket-reply">
