@@ -1,16 +1,12 @@
-<div class="row u-mb-3">
-  <div class="small-6 columns">
+<div class="row">
+  <div class="small-10 columns">
     <h2><%= @event.name %>
     <% if @event.closed %>
     <span class="Badge Badge--uppercase Badge--grey">Closed</span>
     <% end %>
     </h2>
-      <h4>
-        <%= @event.scheduled_datetime %>
-      </h4>
-    <p><%= @event.description %></p>
   </div>
-  <div class="small-2 small-offset-3 columns">
+  <div class="small-2 columns">
     <p>
     <% if !@event.closed %>
     <%= link_to 'Ask Question', new_event_question_path(@event.id), class: 'Button Button--green Button--fullWidth'%>
@@ -19,8 +15,13 @@
     <% end %>
     </p>
   </div>
-  <% if policy(@event).edit? %>
-  <div class="small-1 columns">
+</div>
+    <div class="row u-mb-3">
+      <div class="small-10 columns">
+    <p><%= @event.description %></p>
+      </div>
+        <% if policy(@event).edit? %>
+              <div class="small-2 columns u-textAlignRight">
     <% if @event.closed %>
       <%= link_to '', open_event_path, { class: 'Button Button--green Button--icon Icon--arrowUp', :'data-toggle' => 'tooltip', :'data-placement' => 'top', title: 'Open Event' }%>
     <% else %>
@@ -29,8 +30,8 @@
     <%= link_to '', edit_event_path, { class: 'Button Button--blue Button--icon Icon--gear', :'data-toggle' => 'tooltip', :'data-placement' => 'top', title: 'Edit Event' } %>
   </div>
   <% end %>
-</div>
-<div class="row u-mb-2">
+    </div>
+<div class="row u-mb-4">
   <div class="small-12 columns">
     <p class="small"><%= "#{pluralize(@event.vote_count, 'vote')} on #{pluralize(@questions.length, 'question')} from #{pluralize(@event.participant_count, 'person')}." %></p>
   </div>
