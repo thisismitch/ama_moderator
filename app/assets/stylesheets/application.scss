@@ -15,3 +15,11 @@
  */
 
 @import 'buoy';
+
+.SideNav li {
+    margin-bottom: 0.25rem;
+    width: 208px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
