@@ -32,7 +32,7 @@
           <% end %>
         </div>
         <div class="row u-mb-2">
-        <p><%= question.score %></p>
+        <p><%= question.score %> (+<%= question.upvotes %>, -<%= question.downvotes %>)</p>
         </div>
         <div class="row u-mb-2">
           <% if @user.votes.where("question_id = ?", question.id).where("type_of LIKE ?", 'down').empty? %>
