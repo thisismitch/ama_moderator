@@ -11,7 +11,7 @@ describe "adding events" do
     visit new_event_path
     fill_in "Name", with: "AMA 10.31"
     fill_in "Description", with: "Ask me anything about Halloween"
-    select_date Date.parse('31/10/2015'), from: "event_scheduled_datetime"
+    select_date_and_time DateTime.new(2015, 10, 31, 18, 30), from: "event_scheduled_datetime"
     click_button("Create Event")
     visit events_path
     expect(page).to have_content("AMA 10.31")
