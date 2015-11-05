@@ -3,4 +3,12 @@ class Vote < ActiveRecord::Base
   
   belongs_to :user
   belongs_to :question
+
+  def up
+    self.update(type_of: 'up')
+  end
+
+  def down
+    self.update(type_of: 'down')
+  end
 end

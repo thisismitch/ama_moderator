@@ -18,4 +18,9 @@ RSpec.describe Event do
       expect(event.closed?).to be false
     end
   end
+
+  xdescribe 'vote_count' do
+    it 'can sum the votes of the current user' do
+    end
+  end
 end

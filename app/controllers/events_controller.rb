@@ -37,7 +37,7 @@ class EventsController < ApplicationController
     @event.save
 
     if @event.errors.any?
-      redirect_to @event, alert: "Error: " + @event.errors.full_messages.to_sentence
+      render :new, alert: "Error: " + @event.errors.full_messages.to_sentence
     else
       redirect_to events_path, notice: "Event (#{@event.name}) was created."
     end

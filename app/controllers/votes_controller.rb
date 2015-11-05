@@ -6,7 +6,7 @@ class VotesController < ApplicationController
       @vote = @question.votes.create(user_id: current_user.id, type_of: 'up')
       redirect_to event_path(@question.event_id, anchor: "question_#{@question.id}"), notice: 'Question upvoted.'
     elsif @vote.type_of == 'down'
-      @vote.update(type_of: 'up')
+      @vote.up
       redirect_to event_path(@question.event_id, anchor: "question_#{@question.id}"), notice: 'Question upvoted.'
     end
   end
@@ -16,7 +16,7 @@ class VotesController < ApplicationController
       @vote = @question.votes.create(user_id: current_user.id, type_of: 'down')
       redirect_to event_path(@question.event_id, anchor: "question_#{@question.id}"), notice: 'Question downvoted.'
     elsif @vote.type_of == 'up'
-      @vote.update(type_of: 'down')
+      @vote.down
       redirect_to event_path(@question.event_id, anchor: "question_#{@question.id}"), notice: 'Question downvoted.'
     end
   end

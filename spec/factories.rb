@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :admin_user, :class => :user do
     name 'Andrew Adminz'
+    uid 1
     email 'adminz@gmail.com'
     password 'f4k3p455w0rd'
     admin true
@@ -9,6 +10,7 @@ FactoryGirl.define do
 
   factory :normal_user, :class => :user do
     name 'Nancy Normal'
+    uid 2
     email 'normal@gmail.com'
     password 'f4k3p455w0rd'
     admin false
