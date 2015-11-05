@@ -3,6 +3,16 @@ class Event < ActiveRecord::Base
   has_many :questions, dependent: :destroy
   belongs_to :user
 
+  def close
+    self.closed = true
+    self.save
+  end
+
+  def reopen
+    self.closed = false
+    self.save
+  end
+
   def vote_count
   	sum = 0
   	self.questions.each do |question|
@@ -21,4 +31,6 @@ class Event < ActiveRecord::Base
   	end
   	participants.uniq.count
   end
+
+
 end
