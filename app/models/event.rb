@@ -4,13 +4,11 @@ class Event < ActiveRecord::Base
   belongs_to :user
 
   def close
-    self.closed = true
-    self.save
+    self.update(closed: true)
   end
 
-  def reopen
-    self.closed = false
-    self.save
+  def open
+    self.update(closed: false)
   end
 
   def vote_count

@@ -67,13 +67,13 @@ class EventsController < ApplicationController
 
   def close
     authorize @event
-    @event.update(closed: true)
+    @event.close
     redirect_to :back, notice: 'Event was closed.'
   end
 
   def open
     authorize @event
-    @event.update(closed: false)
+    @event.open
     redirect_to :back, notice: 'Event was opened.'
   end
 

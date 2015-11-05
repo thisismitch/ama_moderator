@@ -14,7 +14,7 @@ RSpec.describe Event do
 
     it "can be re-opened" do
       event.close
-      event.reopen
+      event.open
       expect(event.closed?).to be false
     end
   end
