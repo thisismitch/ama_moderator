@@ -1,6 +1,6 @@
 <div class="row">
   <div class="small-10 columns">
-    <h2><%= @event.name %>
+    <h2 id='event_name'><%= @event.name %>
     <% if @event.closed %>
     <span class="Badge Badge--uppercase Badge--grey">Closed</span>
     <% end %>
@@ -16,9 +16,10 @@
     </p>
   </div>
 </div>
-    <div class="row u-mb-3">
+    <div class="row u-mb-3 event_header">
       <div class="small-10 columns">
-    <p><%= @event.description %></p>
+      <div><p id='event_datetime' class="small"><%= format_datetime(@event.scheduled_datetime) %></p></div>
+    <p id='event_description'><%= @event.description %></p>
       </div>
         <% if policy(@event).edit? %>
               <div class="small-2 columns u-textAlignRight">
