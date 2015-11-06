@@ -31,11 +31,11 @@
           <% end %>
           </h3>
           <div>
-            <h4>
-              <%= event.scheduled_datetime %>
-            </h4>
+            <p class="small">
+              <%= format_datetime(event.scheduled_datetime) %>
+            </p>
           </div>
-          <p class="small"><%= event.description %></p>
+          <p><%= event.description %></p>
             <div class="ButtonGroup">
             <% if policy(@events).edit? %>
               <%= link_to '', edit_event_path(event.id), { class: 'Button Button--blue Button--icon Icon--gear', :'data-toggle' => 'tooltip', :'data-placement' => 'top', title: 'Edit Event' }%>
