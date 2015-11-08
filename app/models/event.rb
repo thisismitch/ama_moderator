@@ -11,6 +11,14 @@ class Event < ActiveRecord::Base
     self.update(closed: false)
   end
 
+  def closed?
+    if self.scheduled_datetime.nil?
+      self.closed   # manually closed?
+    else
+      DateTime.now > self.scheduled_datetime
+    end
+  end
+
   def vote_count
   	sum = 0
   	self.questions.each do |question|

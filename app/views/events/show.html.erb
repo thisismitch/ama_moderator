@@ -1,14 +1,14 @@
 <div class="row">
   <div class="small-10 columns">
     <h2 id='event_name'><%= @event.name %>
-    <% if @event.closed %>
+    <% if @event.closed? %>
     <span class="Badge Badge--uppercase Badge--grey">Closed</span>
     <% end %>
     </h2>
   </div>
   <div class="small-2 columns">
     <p>
-    <% if !@event.closed %>
+    <% if !@event.closed? %>
     <%= link_to 'Ask Question', new_event_question_path(@event.id), class: 'Button Button--green Button--fullWidth'%>
     <% else %>
     <a class="Button is-disabled Button--green Button--fullWidth" data-toggle="tooltip" data-placement="top" title="Event is closed">Ask Question</a>
@@ -23,10 +23,12 @@
       </div>
         <% if policy(@event).edit? %>
               <div class="small-2 columns u-textAlignRight">
-    <% if @event.closed %>
-      <%= link_to '', open_event_path, { class: 'Button Button--green Button--icon Icon--arrowUp', :'data-toggle' => 'tooltip', :'data-placement' => 'top', title: 'Open Event' }%>
-    <% else %>
-      <%= link_to '', close_event_path, { class: 'Button Button--red Button--icon Icon--arrowDown', :'data-toggle' => 'tooltip', :'data-placement' => 'top', title: 'Close Event' }%>
+    <% if @event.scheduled_datetime.nil? %>
+      <% if @event.closed? %>
+        <%= link_to '', open_event_path, { class: 'Button Button--green Button--icon Icon--arrowUp', :'data-toggle' => 'tooltip', :'data-placement' => 'top', title: 'Open Event' }%>
+      <% else %>
+        <%= link_to '', close_event_path, { class: 'Button Button--red Button--icon Icon--arrowDown', :'data-toggle' => 'tooltip', :'data-placement' => 'top', title: 'Close Event' }%>
+      <% end %>
     <% end %>
     <%= link_to '', edit_event_path, { class: 'Button Button--blue Button--icon Icon--gear', :'data-toggle' => 'tooltip', :'data-placement' => 'top', title: 'Edit Event' } %>
   </div>
