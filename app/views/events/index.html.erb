@@ -25,11 +25,10 @@
       <tr id="<%= "event_index_#{event.id}" %>">
         <td>
           <div class="Table-actions">
-          <h3 class="name"><%= link_to event.name, event_path(event.id) %> 
+          <h3 class="name"><%= link_to event.name, event_path(event.id) %></h3>
           <% if event.closed? %>
-          <span class="Badge Badge--uppercase Badge--grey">Closed</span>
+          <span class="Badge">Closed</span>
           <% end %>
-          </h3>
           <div>
             <p class="small datetime">
               <%= format_datetime(event.scheduled_datetime) %>
