@@ -21,7 +21,7 @@
   <% end %>
   <table class="u-mb-5">
     <tbody class="Table-actions">
-    <% @events.order(:created_at).reverse_order.each do |event| %>
+    <% descending_events(@events).each do |event| %>
       <tr id="<%= "event_index_#{event.id}" %>">
         <td>
           <div class="Table-actions">
