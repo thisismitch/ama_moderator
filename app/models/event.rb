@@ -37,6 +37,4 @@ class Event < ActiveRecord::Base
   	end
   	participants.uniq.count
   end
-
-
 end
