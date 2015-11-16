@@ -14,5 +14,4 @@ module EventsHelper
   def descending_events(events)
     events.reverse_order
   end
-
 end

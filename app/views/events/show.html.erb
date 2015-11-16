@@ -36,10 +36,10 @@
     </div>
 <div class="row u-mb-4">
   <div class="small-12 columns">
-    <p class="small"><%= "#{pluralize(@event.vote_count, 'vote')} on #{pluralize(@questions.length, 'question')} from #{pluralize(@event.participant_count, 'person')}." %></p>
+    <p class="small"><%= "#{pluralize(@event.vote_count, 'vote')} on #{pluralize(@event.question_count, 'question')} from #{pluralize(@event.participant_count, 'person')}." %></p>
   </div>
 </div>
-<% if @questions.empty? %>
+<% if @event.question_count == 0 %>
 <div class="row u-mb-2">
   <div class="small-12 columns">
   <h3>There are no questions in this event yet. Ask one!</h3>

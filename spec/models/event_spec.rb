@@ -33,8 +33,28 @@ RSpec.describe Event do
     end
   end
 
-  xdescribe 'vote_count' do
-    it 'can sum the votes of the current user' do
+  describe 'stats' do
+    describe 'questions' do
+      let(:event) { Event.create }
+
+      it 'new event has no questions' do
+        expect(event.question_count).to eq(0)
+      end
+
+      it 'can count its questions' do
+        event.questions.new
+        expect(event.question_count).to eq(1)
+      end
+    end
+
+    xdescribe 'people' do
+      it 'can sum participants (submitted questions, comments, or vote)' do
+      end
+    end
+
+    xdescribe 'votes' do
+      it 'can sum the votes of the current user' do
+      end
     end
   end
 end
