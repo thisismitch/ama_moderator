@@ -19,9 +19,9 @@ class Event < ActiveRecord::Base
     end
   end
 
-  def question_count
-    self.questions.size
-  end
+  # def question_count
+  #   self.questions.size
+  # end
 
   def vote_count
   	sum = 0
