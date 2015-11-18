@@ -11,6 +11,7 @@ class Event < ActiveRecord::Base
     self.update(closed: false)
   end
 
+  # closed? overloaded to return true if event was manually closed, or if the scheduled time has been reached
   def closed?
     if self.scheduled_datetime.nil?
       self.closed   # manually closed?
@@ -19,26 +20,24 @@ class Event < ActiveRecord::Base
     end
   end
 
-  # def question_count
-  #   self.questions.size
-  # end
-
   def vote_count
-  	sum = 0
-  	self.questions.each do |question|
-  		sum += question.votes.count
-  	end
-  	sum
+    self.questions.inject(0) { |result, question| result += question.votes.size }
   end
 
+  # participant_count is the number of unique users who have submitted a question or a vote
   def participant_count
-  	participants = []
-  	self.questions.each do |question|
-  		participants << question.user_id
-  		question.votes.each do |vote|
-  			participants << vote.user_id
-  		end
-  	end
-  	participants.uniq.count
+    participants = questioner_user_ids + voter_user_ids
+    participants.uniq.size
+  end
+
+  def questioner_user_ids
+    self.questions.map { |question| question.user_id }
+  end
+
+  def voter_user_ids
+    user_ids = self.questions.map do |question|
+      question.votes.map { |vote| vote.user_id }
+    end
+    user_ids.flatten
   end
 end
