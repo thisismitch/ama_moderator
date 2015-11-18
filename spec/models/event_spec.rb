@@ -38,30 +38,17 @@ RSpec.describe Event do
     let(:user_1) { FactoryGirl.create(:normal_user) }
     let(:user_2) { FactoryGirl.create(:admin_user) }
 
-    # describe 'questions' 
-
     describe 'votes' do
       it 'returns 0 for new events' do
         expect(event.vote_count).to eq(0)
       end
 
-      it 'returns the total number of votes' do
-        event.questions.votes.new
+      xit 'returns the total number of votes' do
+        
       end
     end
     
-
-    #   it 'new event has no questions' do
-    #     expect(event.question_count).to eq(0)
-    #   end
-
-    #   it 'can count its questions' do
-    #     event.questions.new
-    #     expect(event.question_count).to eq(1)
-    #   end
-    # end
-
-    it 'can sum participants who submitted a question, comment, or vote' do
+    xit 'can sum participants who submitted a question or vote' do
 
     end
     
