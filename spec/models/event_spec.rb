@@ -33,8 +33,25 @@ RSpec.describe Event do
     end
   end
 
-  xdescribe 'vote_count' do
-    it 'can sum the votes of the current user' do
+  describe 'stats' do
+    let(:event) { Event.new }
+    let(:user_1) { FactoryGirl.create(:normal_user) }
+    let(:user_2) { FactoryGirl.create(:admin_user) }
+
+    describe 'votes' do
+      it 'returns 0 for new events' do
+        expect(event.vote_count).to eq(0)
+      end
+
+      xit 'returns the total number of votes' do
+        
+      end
     end
+    
+    xit 'can sum participants who submitted a question or vote' do
+
+    end
+    
+
   end
 end

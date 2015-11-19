@@ -6,22 +6,22 @@ class EventsController < ApplicationController
     set_users_questions_votes_count # for stat summary
   end
 
+ # most recently created
   def last
     if @events.empty?
       redirect_to events_path
     else
-      redirect_to event_path(@events.last) # show most recent event
+      redirect_to event_path(@events.last)
     end
   end
 
   def show
-   	@questions = @event.questions
     @user = current_user
 
-    if params[:sort] == 'date'
-      @questions = @questions.reverse
+    if params[:sort] == 'date' # reverse chronological
+      @questions = @event.questions.reverse
     else
-      @questions = @questions.sort_by(&:score).reverse  # popularity by default
+      @questions = @event.questions.sort_by(&:score).reverse  # popularity by default
     end
   end
 
