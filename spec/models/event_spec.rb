@@ -34,24 +34,59 @@ RSpec.describe Event do
   end
 
   describe 'stats' do
-    let(:event) { Event.new }
-    let(:user_1) { FactoryGirl.create(:normal_user) }
-    let(:user_2) { FactoryGirl.create(:admin_user) }
+    let(:admin_user) { FactoryGirl.create(:admin_user) }
+    let(:event) { Event.create(name: 'Cool Event', user: admin_user) }
 
-    describe 'votes' do
+    describe '#vote_count' do
       it 'returns 0 for new events' do
         expect(event.vote_count).to eq(0)
       end
 
-      xit 'returns the total number of votes' do
-        
+      it 'count the total number of votes' do
+        question = event.questions.create(user_id: 1, copy: 'whats up doc?')
+        question.votes.create(user_id: 5, type_of: 'up')
+        question.votes.create(user_id: 10, type_of: 'down')
+        expect(event.vote_count).to eq 2
       end
     end
-    
-    xit 'can sum participants who submitted a question or vote' do
 
+    describe '#questioner_user_ids' do
+      it 'returns an empty array if no questions were asked' do
+        expect(event.questioner_user_ids).to eq []
+      end
+
+      it 'can create an array IDs of users who asked questions' do
+        event.questions.create(user_id: 5, copy: 'i am normal user?')
+        event.questions.create(user_id: 10, copy: 'i am admin user?')
+        expect(event.questioner_user_ids).to eq [5, 10]
+      end
     end
-    
 
+    describe '#voter_user_ids' do
+      it 'returns an empty array if no questions were asked' do
+        expect(event.voter_user_ids).to eq []
+      end
+
+      it 'can create an array IDs of users who voted on questions' do
+        question = event.questions.create(user_id: 1, copy: 'whats up doc?')
+        question.votes.create(user_id: 5, type_of: 'up')
+        question.votes.create(user_id: 10, type_of: 'up')
+        question.votes.create(user_id: 15, type_of: 'down')
+        expect(event.voter_user_ids).to eq [5, 10, 15]
+      end
+    end
+
+    describe '#participant_count' do  
+      it 'returns 0 if there are no questions or votes' do
+        expect(event.participant_count).to eq 0
+      end
+
+      it 'can sum unique participants who submitted a question or vote' do
+        question1 = event.questions.create(user_id: 5, copy: 'i ask questions and vote?')
+        question2 = event.questions.create(user_id: 10, copy: 'i only ask questions?')
+        question2.votes.create(user_id: 5, type_of: 'up')
+        expect(event.participant_count).to eq 2
+      end
+    end
   end
 end
