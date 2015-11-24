@@ -6,9 +6,11 @@ class EventsController < ApplicationController
     set_users_questions_votes_count # for stat summary
   end
 
- # most recently created
+  # most recently created
   def last
     if @events.empty?
+      redirect_to events_path
+    elsif @events.last.closed?
       redirect_to events_path
     else
       redirect_to event_path(@events.last)

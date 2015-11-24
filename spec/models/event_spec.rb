@@ -20,8 +20,7 @@ RSpec.describe Event do
   end
 
   describe 'status' do
-    let!(:event) { Event.new }
-    
+    let(:event) { Event.new }
     it 'past events are closed' do
       event.scheduled_datetime = DateTime.now - 1
       expect(event.closed?).to be true

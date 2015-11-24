@@ -27,5 +27,5 @@ Rails.application.routes.draw do
   get '/users/:id/questions', to: 'users#show_questions', as: 'user_questions'
   get '/users/:id/votes', to: 'users#show_votes', as: 'user_votes'
 
-  root 'events#index'
+  root 'events#last'
 end
