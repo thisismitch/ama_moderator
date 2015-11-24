@@ -43,9 +43,9 @@ RSpec.describe Event do
       end
 
       it 'count the total number of votes' do
-        question = event.questions.create(user_id: 1, copy: 'whats up doc?')
-        question.votes.create(user_id: 5, type_of: 'up')
-        question.votes.create(user_id: 10, type_of: 'down')
+        question = event.questions.new(user_id: 1, copy: 'whats up doc?')
+        question.votes.new(user_id: 5, type_of: 'up')
+        question.votes.new(user_id: 10, type_of: 'down')
         expect(event.vote_count).to eq 2
       end
     end
@@ -56,8 +56,8 @@ RSpec.describe Event do
       end
 
       it 'can create an array IDs of users who asked questions' do
-        event.questions.create(user_id: 5, copy: 'i am normal user?')
-        event.questions.create(user_id: 10, copy: 'i am admin user?')
+        event.questions.new(user_id: 5, copy: 'i am normal user?')
+        event.questions.new(user_id: 10, copy: 'i am admin user?')
         expect(event.questioner_user_ids).to eq [5, 10]
       end
     end
@@ -69,9 +69,9 @@ RSpec.describe Event do
 
       it 'can create an array IDs of users who voted on questions' do
         question = event.questions.create(user_id: 1, copy: 'whats up doc?')
-        question.votes.create(user_id: 5, type_of: 'up')
-        question.votes.create(user_id: 10, type_of: 'up')
-        question.votes.create(user_id: 15, type_of: 'down')
+        question.votes.new(user_id: 5, type_of: 'up')
+        question.votes.new(user_id: 10, type_of: 'up')
+        question.votes.new(user_id: 15, type_of: 'down')
         expect(event.voter_user_ids).to eq [5, 10, 15]
       end
     end
@@ -82,9 +82,9 @@ RSpec.describe Event do
       end
 
       it 'can sum unique participants who submitted a question or vote' do
-        question1 = event.questions.create(user_id: 5, copy: 'i ask questions and vote?')
-        question2 = event.questions.create(user_id: 10, copy: 'i only ask questions?')
-        question2.votes.create(user_id: 5, type_of: 'up')
+        question1 = event.questions.new(user_id: 5, copy: 'i ask questions and vote?')
+        question2 = event.questions.new(user_id: 10, copy: 'i only ask questions?')
+        question2.votes.new(user_id: 5, type_of: 'up')
         expect(event.participant_count).to eq 2
       end
     end
