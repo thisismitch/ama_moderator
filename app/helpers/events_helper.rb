@@ -12,6 +12,6 @@ module EventsHelper
   end
 
   def descending_events(events)
-    events.reverse_order
+    events.order(scheduled_datetime: :desc, created_at: :desc)
   end
 end
