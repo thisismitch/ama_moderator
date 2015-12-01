@@ -16,7 +16,7 @@ class Event < ActiveRecord::Base
     if scheduled_datetime.nil?
       closed   # manually closed?
     else
-      DateTime.now > self.scheduled_datetime
+      DateTime.now > scheduled_datetime
     end
   end
 
