@@ -8,11 +8,11 @@ class Question < ActiveRecord::Base
   has_many :responses, dependent: :destroy
 
   def upvotes
-    votes.where("type_of LIKE ?", 'up').count 
+    votes.where('type_of LIKE ?', :up).count
   end
 
   def downvotes
-    votes.where("type_of LIKE ?", 'down').count
+    votes.where('type_of LIKE ?', :down).count
   end
 
   def score
