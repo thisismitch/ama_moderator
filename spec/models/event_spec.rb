@@ -38,21 +38,30 @@ RSpec.describe Event do
   end
 
   describe 'stats' do
-    let(:admin_user) { FactoryGirl.create(:admin_user) }
-    let(:event) { Event.create(name: 'Cool Event', user: admin_user) }
+    let(:event) { Event.new }
 
     describe '#vote_count' do
+      let(:question) { event.questions.new }
+      
       it 'returns 0 for new events' do
         expect(event.vote_count).to eq 0
       end
 
-      it 'count the total number of votes' do
-        question = event.questions.new
-        question.votes.new(user_id: 1, type_of: 'up')
-        question.votes.new(user_id: 2, type_of: 'down')
+      it 'count the total number of votes on a question' do
+        vote = question.votes.new
 
+        expect(event.vote_count).to eq 1
+      end
+
+      it 'count the total number of votes on all questions' do
+        new_question = event.questions.new
+        vote1 = question.votes.new
+        vote2 = new_question.votes.new
+        
         expect(event.vote_count).to eq 2
       end
+
+
     end
 
     describe '#questioner_user_ids' do
@@ -64,8 +73,7 @@ RSpec.describe Event do
         event.questions.new(user_id: 1)
         event.questions.new(user_id: 2)
 
-        result = event.questioner_user_ids
-        expect(result).to eq [1, 2]
+        expect(event.questioner_user_ids).to eq [1, 2]
       end
     end
 
@@ -76,23 +84,19 @@ RSpec.describe Event do
 
       it 'can create an array IDs of users who voted on a question' do
         question = event.questions.new
-        question.votes.new(user_id: 1, type_of: :up)
-        question.votes.new(user_id: 2, type_of: :up)
-        question.votes.new(user_id: 3, type_of: :down)
-
-        result = event.voter_user_ids
-        expect(result).to eq [1, 2, 3]
+        question.votes.new(user_id: 1)
+        question.votes.new(user_id: 2)
+        
+        expect(event.voter_user_ids).to eq [1, 2]
       end
 
-      it 'can create an array of IDs of a user who voted on more than one question' do
+      it 'can create an array of user IDs that voted on questions' do
         question1 = event.questions.new
         question2 = event.questions.new
+        question1.votes.new(user_id: 1)
+        question2.votes.new(user_id: 2)
 
-        question1.votes.new(user_id: 1, type_of: :up)
-        question2.votes.new(user_id: 1, type_of: :down)
-
-        result = event.voter_user_ids
-        expect(result).to eq [1,1]
+        expect(event.voter_user_ids).to eq [1, 2]
       end
     end
 
@@ -102,12 +106,11 @@ RSpec.describe Event do
       end
 
       it 'can sum unique participants who submitted a question or vote' do
-        question1 = event.questions.new(user_id: 5, copy: 'i ask questions and vote?')
-        question2 = event.questions.new(user_id: 10, copy: 'i only ask questions?')
-        question2.votes.new(user_id: 5, type_of: 'up')
+        question1 = event.questions.new(user_id: 1)
+        question2 = event.questions.new(user_id: 2)
+        question2.votes.new(user_id: 2)
 
-        result = event.participant_count
-        expect(result).to eq 2
+        expect(event.participant_count).to eq 2
       end
     end
   end
