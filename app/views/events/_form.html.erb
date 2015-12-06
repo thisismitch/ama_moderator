@@ -5,7 +5,7 @@
       <div class="small-12 columns">
         <div class="floatlabel-wrapper required" style="position:relative">
           <%= f.text_field :name, placeholder: 'Name' %>
-          <%= f.datetime_select :scheduled_datetime,
+          <%= f.datetime_select :scheduled_at,
                            :default => 0.days.from_now,
                             :order => [:month, :day, :year, :hour, :minute], :start_year => Date.today.year %>
           <%= f.text_area :description, placeholder: 'Description'%>

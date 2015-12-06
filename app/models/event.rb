@@ -13,8 +13,8 @@ class Event < ActiveRecord::Base
 
   # closed? overloaded to return true if event was manually closed, or if the scheduled time has been reached
   def closed?
-    if scheduled_datetime.present?
-      DateTime.now > scheduled_datetime
+    if scheduled_at.present?
+      DateTime.now > scheduled_at
     else
       closed   # manually closed?
     end

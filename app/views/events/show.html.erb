@@ -18,12 +18,12 @@
 </div>
     <div class="row u-mb-3 event_header">
       <div class="small-10 columns">
-      <div><p id='event_datetime' class="small"><%= format_datetime(@event.scheduled_datetime) %></p></div>
+      <div><p id='event_datetime' class="small"><%= format_datetime(@event.scheduled_at) %></p></div>
     <p id='event_description'><%= @event.description %></p>
       </div>
         <% if policy(@event).edit? %>
               <div class="small-2 columns u-textAlignRight">
-    <% if @event.scheduled_datetime.nil? %>
+    <% if @event.scheduled_at.nil? %>
       <% if @event.closed? %>
         <%= link_to '', open_event_path, { class: 'Button Button--green Button--icon Icon--arrowUp', :'data-toggle' => 'tooltip', :'data-placement' => 'top', title: 'Open Event' }%>
       <% else %>

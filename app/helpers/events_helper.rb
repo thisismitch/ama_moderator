@@ -6,8 +6,8 @@ module EventsHelper
   end
 
   def relative_time_to_event(event)
-    if !event.closed? && !event.scheduled_datetime.nil?
-      distance_of_time_in_words(DateTime.now, event.scheduled_datetime)
+    if !event.closed? && !event.scheduled_at.nil?
+      distance_of_time_in_words(DateTime.now, event.scheduled_at)
     end
   end
 

@@ -16,14 +16,14 @@ describe "adding events" do
     visit new_event_path
     fill_in "Name", with: name
     fill_in "Description", with: description
-    select_date_and_time datetime, from: "event_scheduled_datetime"
+    select_date_and_time datetime, from: "event_scheduled_at"
     click_button("Create Event")
     visit events_path
     within('#event_index_1') do
       expect(page).to have_selector('.name', text: name)
       expect(page).to have_selector('.description', text: description)
       expect(page).to have_selector('.datetime', text: format_datetime(datetime))
-    
+
       click_on(name)  # visit the event
     end
 

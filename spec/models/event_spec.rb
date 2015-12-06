@@ -26,13 +26,13 @@ RSpec.describe Event do
     let(:event) { Event.new }
 
     it 'past events are closed' do
-      event.scheduled_datetime = DateTime.now - 1
+      event.scheduled_at = DateTime.now - 1
 
       expect(event).to be_closed
     end
 
     it 'future events are open' do
-      event.scheduled_datetime = DateTime.tomorrow
+      event.scheduled_at = DateTime.tomorrow
       expect(event).not_to be_closed
     end
   end
@@ -42,7 +42,7 @@ RSpec.describe Event do
 
     describe '#vote_count' do
       let(:question) { event.questions.new }
-      
+
       it 'returns 0 for new events' do
         expect(event.vote_count).to eq 0
       end
@@ -57,7 +57,7 @@ RSpec.describe Event do
         new_question = event.questions.new
         vote1 = question.votes.new
         vote2 = new_question.votes.new
-        
+
         expect(event.vote_count).to eq 2
       end
     end
@@ -84,7 +84,7 @@ RSpec.describe Event do
         question = event.questions.new
         question.votes.new(user_id: 1)
         question.votes.new(user_id: 2)
-        
+
         expect(event.voter_user_ids).to eq [1, 2]
       end
 
@@ -98,7 +98,7 @@ RSpec.describe Event do
       end
     end
 
-    describe '#participant_count' do  
+    describe '#participant_count' do
       it 'returns 0 if there are no questions or votes' do
         expect(event.participant_count).to eq 0
       end
