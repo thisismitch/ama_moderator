@@ -60,8 +60,6 @@ RSpec.describe Event do
         
         expect(event.vote_count).to eq 2
       end
-
-
     end
 
     describe '#questioner_user_ids' do
