@@ -14,14 +14,14 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2015-12-06T11:51:21-05:00">2015-12-06T11:51:21-05:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2015-12-06T12:06:44-05:00">2015-12-06T12:06:44-05:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">17.33%</span></span>
+    (<span class="covered_percent"><span class="red">17.21%</span></span>
      covered at
      <span class="covered_strength">
        <span class="red">
@@ -32,9 +32,9 @@
   <a name="AllFiles"></a>
   <div>
     <b>23</b> files in total.
-    <b>525</b> relevant lines. 
-    <span class="green"><b>91</b> lines covered</span> and
-    <span class="red"><b>434</b> lines missed </span>
+    <b>523</b> relevant lines. 
+    <span class="green"><b>90</b> lines covered</span> and
+    <span class="red"><b>433</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -132,11 +132,11 @@
       
       <tr>
         <td class="strong"><a href="#d97256dcc315c7740791ab9017a1f201a2ccdbb1" class="src_link" title="app/helpers/events_helper.rb">app/helpers/events_helper.rb</a></td>
-        <td class="red strong">44.44 %</td>
-        <td>17</td>
-        <td>9</td>
+        <td class="red strong">42.86 %</td>
+        <td>13</td>
+        <td>7</td>
+        <td>3</td>
         <td>4</td>
-        <td>5</td>
         <td>0.4</td>
       </tr>
       
@@ -520,20 +520,20 @@
           <div class="file_list_container" id="Helpers">
   <h2>
     <span class="group_name">Helpers</span>
-    (<span class="covered_percent"><span class="red">64.29%</span></span>
+    (<span class="covered_percent"><span class="red">66.67%</span></span>
      covered at
      <span class="covered_strength">
        <span class="red">
-         0.61
+         0.65
        </span>
     </span> hits/line)
   </h2>
   <a name="Helpers"></a>
   <div>
     <b>6</b> files in total.
-    <b>14</b> relevant lines. 
-    <span class="green"><b>9</b> lines covered</span> and
-    <span class="red"><b>5</b> lines missed </span>
+    <b>12</b> relevant lines. 
+    <span class="green"><b>8</b> lines covered</span> and
+    <span class="red"><b>4</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -561,11 +561,11 @@
       
       <tr>
         <td class="strong"><a href="#d97256dcc315c7740791ab9017a1f201a2ccdbb1" class="src_link" title="app/helpers/events_helper.rb">app/helpers/events_helper.rb</a></td>
-        <td class="red strong">44.44 %</td>
-        <td>17</td>
-        <td>9</td>
+        <td class="red strong">42.86 %</td>
+        <td>13</td>
+        <td>7</td>
+        <td>3</td>
         <td>4</td>
-        <td>5</td>
         <td>0.4</td>
       </tr>
       
@@ -1437,7 +1437,7 @@
         <li class="covered" data-hits="2" data-linenumber="94">
           <span class="hits">2</span>
           
-          <code class="ruby">    @events = Event.all</code>
+          <code class="ruby">    @events = Event.order(:scheduled_at, created_at: :desc)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="95">
@@ -3127,11 +3127,11 @@
         <div class="source_table" id="d97256dcc315c7740791ab9017a1f201a2ccdbb1">
   <div class="header">
     <h3>app/helpers/events_helper.rb</h3>
-    <h4><span class="red">44.44 %</span> covered</h4>
+    <h4><span class="red">42.86 %</span> covered</h4>
     <div>
-      <b>9</b> relevant lines. 
-      <span class="green"><b>4</b> lines covered</span> and
-      <span class="red"><b>5</b> lines missed.</span>
+      <b>7</b> relevant lines. 
+      <span class="green"><b>3</b> lines covered</span> and
+      <span class="red"><b>4</b> lines missed.</span>
     </div>
   </div>
   
@@ -3211,30 +3211,6 @@
         </li>
       
         <li class="never" data-hits="" data-linenumber="13">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="14">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def descending_events(events)</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="15">
-          
-          
-          <code class="ruby">    events.reverse_order</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="16">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="17">
           
           
           <code class="ruby">end</code>

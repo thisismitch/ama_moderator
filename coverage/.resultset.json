@@ -43,10 +43,6 @@
         0,
         null,
         null,
-        null,
-        1,
-        0,
-        null,
         null
       ],
       "/Users/manicas/thisismitch/ama_moderator/app/helpers/questions_helper.rb": [
@@ -709,6 +705,6 @@
         0
       ]
     },
-    "timestamp": 1449420681
+    "timestamp": 1449421604
   }
 }

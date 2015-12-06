@@ -91,7 +91,7 @@ class EventsController < ApplicationController
   end
 
   def set_events
-    @events = Event.all
+    @events = Event.order(:scheduled_at, created_at: :desc)
   end
 
   def set_users_questions_votes_count
