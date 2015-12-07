@@ -1,22 +1,19 @@
 require 'rails_helper'
-require 'helpers/select_datetime_helper'
-
 
 describe "adding events" do
-  include SelectDatetime
   include EventsHelper
 
   let(:admin_user) { FactoryGirl.create(:admin_user) }
   let(:name) { 'AMA 10.31' }
   let(:description) { 'Ask me anything about Halloween' }
-  let(:datetime) { DateTime.new(2015, 10, 31, 18, 30) }
+  let(:datetime) { DateTime.new(2015, 10, 31, 10, 30) }
 
   it "allows an admin user to create an event with name, datetime, description" do
     login(admin_user)
     visit new_event_path
     fill_in "Name", with: name
     fill_in "Description", with: description
-    select_date_and_time datetime, from: "event_scheduled_at"
+    fill_in 'Date and Time', with: '2015-10-31 10:30'
     click_button("Create Event")
     visit events_path
     within('#event_index_1') do
