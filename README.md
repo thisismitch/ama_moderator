@@ -64,11 +64,6 @@ Log in to create your user. Then make yourself admin and create an anonymous use
 RAILS_ENV=production rake db:seed
 ```
 
-## Need to Implement
-
-- My Votes - List of questions voted on by a user (filter by all,up,down), (sort by timestamp, popularity)
-- Date picker in new/edit Event view (and sort events by scheduled time)
-
 ## Author
 
 Mitchell Anicas thisismitch@gmail.com / manicas@digitalocean.com
