@@ -20,7 +20,7 @@
   <h3>There are no events yet. Ask an admin to create one</h3>
   <% end %>
   <table class="u-mb-5">
-    <tbody class="Table-actions">
+    <tbody class="Table-actions" id='event_table'>
     <% descending_events(@events).each do |event| %>
       <tr id="<%= "event_index_#{event.id}" %>">
         <td>

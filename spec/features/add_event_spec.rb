@@ -16,7 +16,7 @@ describe "adding events" do
     fill_in 'Date and Time', with: '2015-10-31 10:30'
     click_button("Create Event")
     visit events_path
-    within('#event_index_1') do
+    within('#event_table') do
       expect(page).to have_selector('.name', text: name)
       expect(page).to have_selector('.description', text: description)
       expect(page).to have_selector('.datetime', text: format_datetime(datetime))
