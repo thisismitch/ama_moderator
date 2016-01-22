@@ -3,6 +3,9 @@ class Event < ActiveRecord::Base
   has_many :questions, dependent: :destroy
   belongs_to :user
 
+  scope :interleaved_scheduled,
+    ->{ order('CASE WHEN scheduled_at IS NOT NULL THEN scheduled_at ELSE created_at END') }
+
   def close
     update(closed: true)
   end

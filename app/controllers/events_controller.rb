@@ -91,7 +91,7 @@ class EventsController < ApplicationController
   end
 
   def set_events
-    @events = Event.order('case when scheduled_at is not null then scheduled_at else created_at end')
+    @events = Event.interleaved_scheduled
   end
 
   def set_users_questions_votes_count

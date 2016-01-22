@@ -33,6 +33,7 @@
             <p class="small datetime">
               <%= format_datetime(event.scheduled_at) %>
             </p>
+            <p class="small"><%= "#{pluralize(event.vote_count, 'vote')} on #{pluralize(event.questions.size, 'question')} from #{pluralize(event.participant_count, 'person')}." %></p>
           </div>
           <p class="description"><%= event.description %></p>
             <div class="ButtonGroup">
