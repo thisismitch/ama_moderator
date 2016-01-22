@@ -22,6 +22,7 @@ test:
   database: ama_moderator_test
 
 production:
+  <<: *default
   database: ama_moderator
   pool: 5
   username: <%= ENV['APP_DATABASE_USER'] %>
