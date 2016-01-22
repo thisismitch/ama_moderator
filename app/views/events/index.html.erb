@@ -33,9 +33,9 @@
             <p class="small datetime">
               <%= format_datetime(event.scheduled_at) %>
             </p>
-            <p class="small"><%= "#{pluralize(event.vote_count, 'vote')} on #{pluralize(event.questions.size, 'question')} from #{pluralize(event.participant_count, 'person')}." %></p>
           </div>
           <p class="description"><%= event.description %></p>
+          <p class="small"><%= "#{pluralize(event.vote_count, 'vote')} on #{pluralize(event.questions.size, 'question')} from #{pluralize(event.participant_count, 'person')}." %></p>
             <div class="ButtonGroup">
             <% if policy(@events).edit? %>
               <%= link_to '', edit_event_path(event.id), { class: 'Button Button--blue Button--icon Icon--gear', :'data-toggle' => 'tooltip', :'data-placement' => 'top', title: 'Edit Event' }%>
