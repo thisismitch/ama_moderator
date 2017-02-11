@@ -91,7 +91,7 @@ class EventsController < ApplicationController
   end
 
   def set_events
-    @events = Event.interleaved_scheduled
+    @events = Event.interleaved_scheduled.page(params[:page]).per(20)
   end
 
   def set_users_questions_votes_count

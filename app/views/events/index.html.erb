@@ -22,7 +22,7 @@
   <table class="u-mb-5">
     <tbody class="Table-actions" id='event_table'>
     <% descending_events(@events).each do |event| %>
-      <tr id="<%= "event_index_#{event.id}" %>">
+      <tr class="event-item" id="<%= "event_index_#{event.id}" %>">
         <td>
           <div class="Table-actions">
           <h3 class="name"><%= link_to event.name, event_path(event.id) %></h3>
@@ -47,5 +47,6 @@
     <% end %>
     </tbody>
   </table>
+  <%= paginate @events %>
 </div>
 </div>

@@ -68,3 +68,5 @@ gem 'buoy'
 
 gem 'possessive'
 
+# Pagination
+gem 'kaminari'
