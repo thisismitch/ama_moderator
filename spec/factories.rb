@@ -1,19 +1,14 @@
 FactoryGirl.define do
-  factory :admin_user, :class => :user do
-    name 'Andrew Adminz'
-    uid 1
-    email 'adminz@gmail.com'
-    password 'f4k3p455w0rd'
-    admin true
-    provider 'google_oauth2'
-  end
-
-  factory :normal_user, :class => :user do
+  factory :user do
     name 'Nancy Normal'
-    uid 2
-    email 'normal@gmail.com'
+    sequence(:email) { |n| "person#{n}@example.com" }
     password 'f4k3p455w0rd'
     admin false
     provider 'google_oauth2'
+  end
+
+  factory :event do
+    user
+    sequence(:name) { |n| "Event Name #{n}" }
   end
 end

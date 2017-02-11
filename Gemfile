@@ -48,6 +48,7 @@ end
 group :test do
   gem 'capybara'
   gem 'simplecov', '~> 0.11.1'
+  gem 'database_cleaner'
 end
 
 # Use postgres as the database for Active Record
@@ -67,3 +68,5 @@ gem 'buoy'
 
 gem 'possessive'
 
+# Pagination
+gem 'kaminari'

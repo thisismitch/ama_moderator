@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe EventsController, type: :controller do
-  let(:normal_user) { FactoryGirl.create(:normal_user) }
-  let(:admin_user) { FactoryGirl.create(:admin_user) }
+  let(:user) { FactoryGirl.create(:user) }
+  let(:admin) { FactoryGirl.create(:user, admin: true) }
 
   before do
-    Rails.application.env_config["devise.mapping"] = Devise.mappings[:admin_user] # If using Devise
+    Rails.application.env_config["devise.mapping"] = Devise.mappings[:admin] # If using Devise
     Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:google]
-    sign_in admin_user
+    sign_in admin
   end
 
   it "creates an event" do

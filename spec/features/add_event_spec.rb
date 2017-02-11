@@ -3,13 +3,13 @@ require 'rails_helper'
 describe "adding events" do
   include EventsHelper
 
-  let(:admin_user) { FactoryGirl.create(:admin_user) }
+  let(:admin) { FactoryGirl.create(:user, admin: true) }
   let(:name) { 'AMA 10.31' }
   let(:description) { 'Ask me anything about Halloween' }
   let(:datetime) { DateTime.new(2015, 10, 31, 10, 30) }
 
   it "allows an admin user to create an event with name, datetime, description" do
-    login(admin_user)
+    login(admin)
     visit new_event_path
     fill_in "Name", with: name
     fill_in "Description", with: description
