@@ -8,10 +8,5 @@ RSpec.describe Vote do
       vote.up
       expect(vote.type_of).to eq 'up'
     end
-
-    it 'can be an downvote' do
-      vote.down
-      expect(vote.type_of).to eq 'down'
-    end
   end
 end

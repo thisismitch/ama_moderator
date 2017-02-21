@@ -25,6 +25,7 @@
       </div>
       <div class="small-1 columns u-textAlignCenter">
         <div class="row u-mb-2">
+          <span class="Badge"><%= question.score %></span>
           <% if @user.votes.where("question_id = ?", question.id).where("type_of LIKE ?", 'up').empty? %>
           <%= link_to '', upvote_question_path(question.id), { method: :post, class: 'Button Button--outline Button--green Button--icon Icon--arrowUp', :'data-toggle' => 'tooltip', :'data-placement' => 'top', title: 'Upvote' } %>
           <% else %>
@@ -32,14 +33,7 @@
           <% end %>
         </div>
         <div class="row u-mb-2">
-        <p><%= question.score %><br>(+<%= question.upvotes %>, -<%= question.downvotes %>)</p>
-        </div>
-        <div class="row u-mb-2">
-          <% if @user.votes.where("question_id = ?", question.id).where("type_of LIKE ?", 'down').empty? %>
-          <%= link_to '', downvote_question_path(question.id), { method: :post, class: 'Button Button--outline Button--red Button--icon Icon--arrowDown', :'data-toggle' => 'tooltip', :'data-placement' => 'bottom', title: 'Downvote' } %>
-          <% else %>
-          <a class="Button Button--red Button--icon Icon--arrowDown"></a>
-          <% end %>
+        <p></p>
         </div>
       </div>
     </div>

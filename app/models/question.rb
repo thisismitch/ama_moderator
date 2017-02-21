@@ -11,11 +11,7 @@ class Question < ActiveRecord::Base
     votes.where('type_of LIKE ?', :up).count
   end
 
-  def downvotes
-    votes.where('type_of LIKE ?', :down).count
-  end
-
   def score
-    self.upvotes - self.downvotes
+    self.upvotes
   end
 end

@@ -18,37 +18,19 @@ describe Question do
     end
   end
 
-  describe '#downvotes' do
-    it 'new questions have 0 downvotes' do
-      result = question.downvotes
-      expect(result).to eq 0
-    end
-
-    it 'can count 1 downvotes' do
-      vote = question.votes.new
-      vote.down
-
-      result = question.downvotes
-      expect(result).to eq 1
-    end
-  end
-
   describe '#score' do
     it 'new questions have 0 score' do
       result = question.score
       expect(result).to eq 0
     end
 
-    it 'question with upvotes and downvotes have a score' do
-      upvote1 = question.votes.new
+    it 'question with multiple upvotes have a score' do
+      upvote1 = question.votes.new(user_id: 1)
       upvote1.up
-      upvote2 = question.votes.new
+      upvote2 = question.votes.new(user_id: 2)
       upvote2.up
-      downvote = question.votes.new
-      downvote.down
 
-      result = question.score
-      expect(result).to eq 1
+      expect(question.score).to eq 2
     end
   end
 end
