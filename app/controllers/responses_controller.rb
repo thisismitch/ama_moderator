@@ -5,14 +5,14 @@ class ResponsesController < ApplicationController
 
   def index
     @user = current_user
-    @responses = @question.responses
+    @responses = @question.responses.sort_by(&:created_at)
     @event = @question.event
   end
 
   def new
     @user = current_user
     @event = @question.event
-    @responses = @question.responses  # load existing responses
+    @responses = @question.responses.sort_by(&:created_at) # load existing responses
     @response = @question.responses.new
   end
 
@@ -32,7 +32,7 @@ class ResponsesController < ApplicationController
 
   def destroy
     authorize(@response)
-    
+
     question_id = @response.question_id
     @response.destroy
     redirect_to question_responses_path(question_id), notice: "Response was destroyed."
