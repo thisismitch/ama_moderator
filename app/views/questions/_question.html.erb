@@ -16,12 +16,15 @@
         <span class="Ticket-reply">
           <%= link_to "#{question.user.name}", user_questions_path(question.user.id) %> asks:
         </span>
-        <span class="Ticket-timestamp"><%= time_ago_in_words(question.created_at) %> ago</span>
+        <span class="Ticket-timestamp" data-toggle="tooltip" data-placement="top" title="<%= question.created_at %>"><%= time_ago_in_words(question.created_at) %> ago</span>
       </div>
     </div>
     <div class="row u-mb-2">
       <div class="small-11 columns">
         <%= simple_format(question.copy) %>
+        <% if question.updated_at != question.created_at %>
+          <p class="small">Last edited at: <%= question.updated_at %></p>
+        <% end %>
       </div>
       <div class="small-1 columns u-textAlignCenter">
         <div class="row u-mb-2">

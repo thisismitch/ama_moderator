@@ -17,10 +17,13 @@
       <span class="Ticket-reply">
         <%= link_to "#{response.user.name}", user_questions_path(response.user.id) %> responds:
       </span>
-      <span class="Ticket-timestamp"><%= time_ago_in_words(response.created_at) %> ago</span>
+      <span class="Ticket-timestamp" data-toggle="tooltip" data-placement="top" title="<%= response.created_at %>"><%= time_ago_in_words(response.created_at) %> ago</span>
     </div>
     <div class="row u-mb-3">
       <%= simple_format(response.copy) %>
+      <% if response.updated_at != response.created_at %>
+        <p class="small">Last edited at: <%= response.updated_at %></p>
+      <% end %>
     </div>
     <div class="row u-mb-2">
     <p class="small">
