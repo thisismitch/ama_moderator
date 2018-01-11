@@ -5,15 +5,19 @@
       <div class="small-12 columns">
         <h4>For Event: <%= f.label :copy, @question.event.name %></h4>
         <div class="floatlabel-wrapper required" style="position:relative">
-          <%= f.text_area :copy, placeholder: 'Question'%>
+          <%= f.text_area :copy, placeholder: 'Question', class: 'u-mb-0' %>
         </div>
       </div>
     </div>
-
+    <div class="row">
+      <div class="small-12 columns u-mb-4" style="text-align:center">
+        <p class="small">Please be considerate and respectful when posting questions and responses.</p>
+      </div>
+    </div>
     <div class="row u-mb-4">
       <div class="small-6 columns">
         <div class="checkbox">
-          <%= f.check_box :anonymous_flag, value: true %>
+          <%= f.check_box :anonymous_flag, value: true, onClick: 'if(this.checked) { alert("You’ve chosen to post anonymously. Please post with the same professional courtesy and respect as you would if your name was attached to this question.") }' %>
           <span></span>
           <%= f.label :anonymous_flag, 'Anonymous' %>
         </div>
