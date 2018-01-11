@@ -18,7 +18,7 @@
     <div class="row">
       <div class="small-6 columns">
         <div class="checkbox">
-          <%= f.check_box :anonymous_flag, value: true %>
+          <%= f.check_box :anonymous_flag, value: true, onClick: 'if(this.checked) { alert("You’ve chosen to post anonymously. Please post with the same professional courtesy and respect as you would if your name was attached to this response.") }' %>
           <span></span>
           <%= f.label :anonymous_flag, 'Anonymous' %>
         </div>
