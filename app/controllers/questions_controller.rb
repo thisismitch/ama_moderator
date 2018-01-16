@@ -13,7 +13,7 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    if question_params[:anonymous_flag] == '1'
+    if anonymous_enabled? && question_params[:anonymous_flag] == '1'
       @question = @event.questions.create(question_params.merge(event_id: @event.id, user_id: User.find_by(name: 'Anonymous').id))
     else
       @question = @event.questions.create(question_params.merge(event_id: @event.id, user_id: current_user.id))
@@ -35,7 +35,7 @@ class QuestionsController < ApplicationController
   def update
     authorize(@question)
 
-    if question_params[:anonymous_flag] == '1'
+    if anonymous_enabled? && question_params[:anonymous_flag] == '1'
       @question.update(question_params.merge(user_id: User.find_by(name: 'Anonymous').id))
     else
       @question.update(question_params)

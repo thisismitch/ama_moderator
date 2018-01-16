@@ -16,12 +16,14 @@
     </div>
     <div class="row u-mb-4">
       <div class="small-6 columns">
+        <% if anonymous_enabled? %>
         <div class="checkbox">
           <%= f.check_box :anonymous_flag, value: true, onClick: 'if(this.checked) { alert("You’ve chosen to post anonymously. Please post with the same professional courtesy and respect as you would if your name was attached to this question.") }' %>
           <span></span>
           <%= f.label :anonymous_flag, 'Anonymous' %>
         </div>
-      </div>
+        <% end %>
+      </div> 
     <div class="small-1 small-offset-2 columns">
     </div>
     <div class="small-3 columns">
