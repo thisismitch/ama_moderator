@@ -3,7 +3,7 @@ require 'rails_helper'
 describe "adding events" do
   include EventsHelper
 
-  let(:admin) { FactoryGirl.create(:user, admin: true) }
+  let(:admin) { FactoryBot.create(:user, admin: true) }
   let(:name) { 'AMA 10.31' }
   let(:description) { 'Ask me anything about Halloween' }
   let(:datetime) { DateTime.new(2015, 10, 31, 10, 30) }

@@ -40,9 +40,9 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 
-  gem 'rspec-rails', '~> 3.3'
+  gem 'rspec-rails', '~> 3.7'
   gem 'guard-rspec'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
 end
 
 group :test do
@@ -52,7 +52,7 @@ group :test do
 end
 
 # Use postgres as the database for Active Record
-gem 'pg'
+gem 'pg', '~> 0.21.0'
 
 # Authentication - OAuth
 gem 'therubyracer'

@@ -2,8 +2,8 @@ require 'rails_helper'
 
 
 describe 'with users and roles' do
-  let(:user) { FactoryGirl.create(:user) }
-  let(:admin) { FactoryGirl.create(:user, admin: true) }
+  let(:user) { FactoryBot.create(:user) }
+  let(:admin) { FactoryBot.create(:user, admin: true) }
 
   it 'shows sign-in page to non-logged-in user' do
     visit root_path
