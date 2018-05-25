@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe EventsController, type: :controller do
-  let(:user) { FactoryGirl.create(:user) }
-  let(:admin) { FactoryGirl.create(:user, admin: true) }
+  let(:user) { FactoryBot.create(:user) }
+  let(:admin) { FactoryBot.create(:user, admin: true) }
 
   before do
     Rails.application.env_config["devise.mapping"] = Devise.mappings[:admin] # If using Devise

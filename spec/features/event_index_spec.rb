@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'events index' do
   subject { visit events_path }
 
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { FactoryBot.create(:user) }
   before do
     login(user)
   end
@@ -17,7 +17,7 @@ describe 'events index' do
   end
 
   context 'when 1 event exists' do
-    let!(:event) { FactoryGirl.create(:event) }
+    let!(:event) { FactoryBot.create(:event) }
     it 'displays event' do
       subject
       expect(page).to have_content(event.name)
@@ -27,7 +27,7 @@ describe 'events index' do
 
   context 'when 20 events exist' do
     before do
-      20.times { |n| FactoryGirl.create(:event) }
+      20.times { |n| FactoryBot.create(:event) }
     end
 
     it 'displays 20 events' do
@@ -37,9 +37,9 @@ describe 'events index' do
   end
 
   context 'when > 20 events exist' do
-    let!(:old_event) { FactoryGirl.create(:event) }
+    let!(:old_event) { FactoryBot.create(:event) }
     before do
-      20.times { |n| FactoryGirl.create(:event) }
+      20.times { |n| FactoryBot.create(:event) }
     end
 
     it 'displays 20 most recent events' do
