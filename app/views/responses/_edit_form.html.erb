@@ -19,7 +19,7 @@
       <div class="small-6 columns">
         <% if anonymous_enabled? %>
         <div class="checkbox">
-          <%= f.check_box :anonymous_flag, value: true, onClick: 'if(this.checked) { alert("You’ve chosen to post anonymously. Please post with the same professional courtesy and respect as you would if your name was attached to this response.") }' %>
+          <%= f.check_box :anonymous_flag, value: true, onClick: 'if(this.checked) { alert("You’ve chosen to post anonymously. This post will not be publicly visible until approved by an admin.") }' %>
           <span></span>
           <%= f.label :anonymous_flag, 'Anonymous' %>
         </div>
