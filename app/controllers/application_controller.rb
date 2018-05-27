@@ -17,4 +17,8 @@ class ApplicationController < ActionController::Base
   def anonymous_enabled?
     Rails.configuration.x.enable_anonymous
   end
+
+  def anonymous_requires_admin_approval?
+    Rails.configuration.x.anonymous_requires_admin_approval
+  end
 end

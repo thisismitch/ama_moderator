@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
   resources :questions, only: [:destroy, :edit, :update]
   post '/questions/:id/upvote/', to: 'votes#upvote', as: 'upvote_question'
+  put '/questions/:id/approve', to: 'questions#approve', as: 'approve_question'
+  put '/questions/:id/disapprove', to: 'questions#disapprove', as: 'disapprove_question'
 
   resources :events, concerns: :has_questions
   get '/events/:id/close', to: 'events#close', as: 'close_event'

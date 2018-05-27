@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: [:edit, :show, :update, :destroy]
+  before_action :set_question, only: [:edit, :show, :update, :destroy, :approve, :disapprove]
   before_action :set_event, only: [:new, :create]
   before_action :set_events
 
@@ -19,7 +19,7 @@ class QuestionsController < ApplicationController
       @question = @event.questions.create(question_params.merge(event_id: @event.id, user_id: current_user.id))
     end
     authorize(@question)
-    
+
     if @question.errors.any?
       redirect_to :back, alert: "Error: " + @question.errors.full_messages.to_sentence
     else
@@ -46,6 +46,18 @@ class QuestionsController < ApplicationController
     else
       redirect_to event_path(@question.event_id, anchor: "question_#{@question.id}"), notice: 'Question was updated.'
     end
+  end
+
+  def approve
+    authorize(@question)
+    @question.update_columns(admin_approved_at: Time.now, admin_approved_by_user_id: current_user.id)
+    redirect_to event_path(@question.event_id, anchor: "question_#{@question.id}"), notice: 'Question was approved.'
+  end
+
+  def disapprove
+    authorize(@question)
+    @question.update_columns(admin_approved_at: nil, admin_approved_by_user_id: nil)
+    redirect_to event_path(@question.event_id, anchor: "question_#{@question.id}"), notice: 'Question was disapproved.'
   end
 
   def destroy

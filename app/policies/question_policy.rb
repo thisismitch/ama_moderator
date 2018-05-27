@@ -25,4 +25,12 @@ class QuestionPolicy < ApplicationPolicy
   def create?
     !question.event.closed?
   end
+
+  def approve?
+    user.admin?
+  end
+
+  def disapprove?
+    user.admin?
+  end
 end
