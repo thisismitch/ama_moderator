@@ -20,11 +20,13 @@ class UsersController < ApplicationController
   end
 
   def show_questions
-    @questions = @user.questions.reverse
+    @questions = @user.questions
+    @questions = @questions.where('anonymous_flag = false OR (anonymous_flag = true AND admin_approved_at IS NOT NULL)') if anonymous_requires_admin_approval? && !current_user.admin
+    @questions = @questions.reverse
   end
 
   def show_votes
-    @questions = Question.last(10) # broken. replace with questions that the user has voted on 
+    @questions = Question.last(10) # broken. replace with questions that the user has voted on
   end
 
   private

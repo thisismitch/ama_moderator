@@ -20,10 +20,15 @@ class EventsController < ApplicationController
   def show
     @user = current_user
 
+    @questions = @event.questions
+    if anonymous_requires_admin_approval? && !@user.admin
+      @questions = @questions.where('anonymous_flag = false OR (anonymous_flag = true AND admin_approved_at IS NOT NULL)')
+    end
+
     if params[:sort] == 'date' # reverse chronological
-      @questions = @event.questions.reverse
+      @questions = @questions.reverse
     else
-      @questions = @event.questions.sort_by(&:score).reverse  # popularity by default
+      @questions = @questions.sort_by(&:score).reverse  # popularity by default
     end
   end
 

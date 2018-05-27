@@ -10,7 +10,7 @@
       <%= image_tag question.user.image_url, class: 'profile-image' %>
     <% end %>
   </div>
-  <div class="small-11 columns">
+  <div class="small-11 columns <%= question.anonymous_flag && anonymous_approval_required? && !question.admin_approved_at ? 'anonymous_unapproved' : '' %>">
     <div class="row u-mb-2">
       <div class="small-12 columns">
         <span class="Ticket-reply">
@@ -25,6 +25,9 @@
         <% if question.updated_at != question.created_at %>
           <p class="small">Last edited at: <%= question.updated_at %></p>
         <% end %>
+        <% if question.admin_approved_at %>
+          <p class="small">Approved at: <%= question.admin_approved_at %></p>
+        <% end %>        
       </div>
       <div class="small-1 columns u-textAlignCenter">
         <div class="row u-mb-2">
@@ -36,7 +39,7 @@
           <% end %>
         </div>
         <div class="row u-mb-2">
-        <p></p>
+          <p></p>
         </div>
       </div>
     </div>
@@ -54,13 +57,32 @@
           <%= link_to 'Post a response', new_question_response_path(question.id) %>
         </p>
       </div>
-<% if !current_page?(url_for(:controller => 'users', :action => 'show_questions')) && !current_page?(url_for(:controller => 'users', :action => 'show_votes')) %>
+    </div>      
+    <% if !current_page?(url_for(:controller => 'users', :action => 'show_questions')) && !current_page?(url_for(:controller => 'users', :action => 'show_votes')) %>
       <% if policy(question).destroy? && current_user.admin %>
-      <div class="small-4 columns">
-      <p class="small"><%= link_to '[Admin: Destroy Question]', question_path(question.id), method: :delete, data: {:confirm => "Are you sure you want to destroy this question?"} %></p>
+    <div class="row">
+      <div class="small-8 columns">
       </div>
-      <% end %>
-      <% end %>
+      <div class="small-4 columns">
+        <p class="small"><%= link_to '[Admin: Destroy Question]', question_path(question.id), method: :delete, data: {:confirm => "Are you sure you want to destroy this question?"} %></p>
+      </div>
     </div>
+      <% end %>
+    <% end %>
+    <% if question.anonymous_flag && anonymous_approval_required? && current_user.admin %>
+    <div class="row">
+      <div class="small-6 columns">
+      </div>
+      <div class="small-6 columns">
+        <p class="small">
+        <% if question.admin_approved_at %>
+          <%= link_to '[Admin: Disapprove Anonymous Question]', disapprove_question_path(question.id), method: :put, data: {:confirm => "Are you sure you want to disapprove this question?"} %>
+        <% else %>
+          <%= link_to '[Admin: Approve Anonymous Question]', approve_question_path(question.id), method: :put, data: {:confirm => "Are you sure you want to approve this question?"} %>
+        <% end %>
+        </p>
+      </div>
+    </div>
+    <% end %>    
   </div>
 </div>

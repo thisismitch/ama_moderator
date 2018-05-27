@@ -25,6 +25,7 @@ module AmaModerator
     config.active_record.raise_in_transactional_callbacks = true
 
     # anonymous question and response posting
-    config.x.enable_anonymous = false
+    config.x.enable_anonymous = true
+    config.x.anonymous_requires_admin_approval = true
   end
 end
