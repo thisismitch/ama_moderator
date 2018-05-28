@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get '/questions/:id/responses', to: 'responses#index', as: 'question_responses'
   post '/questions/:id/responses', to: 'responses#create'
   resources :responses, only: [:destroy, :edit, :update]
+  put '/responses/:id/approve', to: 'responses#approve', as: 'approve_response'
+  put '/responses/:id/disapprove', to: 'responses#disapprove', as: 'disapprove_response'
 
   resources :questions, only: [:destroy, :edit, :update]
   post '/questions/:id/upvote/', to: 'votes#upvote', as: 'upvote_question'

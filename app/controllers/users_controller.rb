@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
   def show_questions
     @questions = @user.questions
-    @questions = @questions.where('anonymous_flag = false OR (anonymous_flag = true AND admin_approved_at IS NOT NULL)') if anonymous_requires_admin_approval? && !current_user.admin
+    @questions = @questions.approved_anonymous if anonymous_requires_admin_approval? && !current_user.admin
     @questions = @questions.reverse
   end
 

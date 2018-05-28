@@ -21,10 +21,10 @@ class EventsController < ApplicationController
     @user = current_user
 
     @questions = @event.questions
+    @unapproved_anonymous_questions_count = @questions.where('anonymous_flag = true AND admin_approved_at IS NULL').count
     if anonymous_requires_admin_approval? && !@user.admin
-      @questions = @questions.where('anonymous_flag = false OR (anonymous_flag = true AND admin_approved_at IS NOT NULL)')
+      @questions = @questions.approved_anonymous
     end
-
     if params[:sort] == 'date' # reverse chronological
       @questions = @questions.reverse
     else

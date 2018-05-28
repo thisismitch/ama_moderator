@@ -37,6 +37,9 @@
 <div class="row u-mb-4">
   <div class="small-12 columns">
     <p class="small"><%= "#{pluralize(@event.vote_count, 'vote')} on #{pluralize(@event.questions.size, 'question')} from #{pluralize(@event.participant_count, 'person')}." %></p>
+    <% if anonymous_approval_required? %>
+    <p class="small">This event has <%= @unapproved_anonymous_questions_count %> unapproved anonymous questions.</p>
+    <% end %>
   </div>
 </div>
 <% if @event.questions.size == 0 %>

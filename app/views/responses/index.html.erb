@@ -4,4 +4,7 @@
   </div>
 </div>
 <%= render @question %>
+<% if anonymous_approval_required? %>
+<p class="small">This question has <%= @unapproved_anonymous_responses_count %> unapproved anonymous responses.</p>
+<% end %>
 <%= render @responses %>

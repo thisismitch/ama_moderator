@@ -4,38 +4,52 @@
   <% else %>
 <div class="row u-dividerTopSmall u-mb-4" id="response_<%= response.id.to_s %>">
   <% end %>
-  <div class="small-11 small-offset-1 columns">
+  <div class="small-11 small-offset-1 columns <%= response.anonymous_flag && anonymous_approval_required? && !response.admin_approved_at ? 'anonymous_unapproved' : '' %>">
     <div class="small-1 columns">
-    <% if response.anonymous_flag %>
-      <%= image_tag 'anonymous.png', class: 'profile-image' %>
-    <% else %>
-      <%= image_tag response.user.image_url, class: 'profile-image' %>
-    <% end %>
-    </div>
-  <div class="small-11 columns">
-    <div class="row u-mb-2">
-      <span class="Ticket-reply">
-        <%= link_to "#{response.user.name}", user_questions_path(response.user.id) %> responds:
-      </span>
-      <span class="Ticket-timestamp" data-toggle="tooltip" data-placement="top" title="<%= response.created_at %>"><%= time_ago_in_words(response.created_at) %> ago</span>
-    </div>
-    <div class="row u-mb-3">
-      <%= simple_format(response.copy) %>
-      <% if response.updated_at != response.created_at %>
-        <p class="small">Last edited at: <%= response.updated_at %></p>
+      <% if response.anonymous_flag %>
+        <%= image_tag 'anonymous.png', class: 'profile-image' %>
+      <% else %>
+        <%= image_tag response.user.image_url, class: 'profile-image' %>
       <% end %>
     </div>
-    <div class="row u-mb-2">
-    <p class="small">
-      <% if policy(response).edit? %>
-      <%= link_to 'Edit Response', edit_response_path(response.id) %>
+    <div class="small-11 columns">
+      <div class="row u-mb-2">
+        <span class="Ticket-reply">
+          <%= link_to "#{response.user.name}", user_questions_path(response.user.id) %> responds:
+        </span>
+        <span class="Ticket-timestamp" data-toggle="tooltip" data-placement="top" title="<%= response.created_at %>"><%= time_ago_in_words(response.created_at) %> ago</span>
+      </div>
+      <div class="row u-mb-3">
+        <%= simple_format(response.copy) %>
+        <% if response.updated_at != response.created_at %>
+          <p class="small">Last edited at: <%= response.updated_at %></p>
+        <% end %>
+        <% if response.admin_approved_at %>
+          <p class="small">Approved at: <%= response.admin_approved_at %></p>
+        <% end %>
+      </div>
+      <div class="row u-mb-2">
+        <p class="small">
+          <% if policy(response).edit? %>
+            <%= link_to 'Edit Response', edit_response_path(response.id) %>
+          <% end %>
+          <% if policy(response).destroy? && current_user.admin %>
+            <%= link_to '[Admin: Destroy Response]', response_path(response.id), method: :delete, data: { :confirm => "Are you sure you want to destroy this response?" } %>
+          <% end %>
+        </p>
+      </div>
+      <% if response.anonymous_flag && anonymous_approval_required? && current_user.admin %>
+      <div class="row u-mb-2">
+        <p class="small">
+          <% if response.admin_approved_at %>
+            <%= link_to '[Admin: Disapprove Anonymous Response]', disapprove_response_path(response.id), method: :put, data: {:confirm => "Are you sure you want to disapprove this response?" } %>
+          <% else %>
+            <%= link_to '[Admin: Approve Anonymous Response]', approve_response_path(response.id), method: :put, data: { :confirm => "Are you sure you want to approve this response?" } %>
+          <% end %>
+        </p>
+      </div>
       <% end %>
-      <% if policy(response).destroy? && current_user.admin %>
-      <%= link_to '[Admin: Destroy Response]', response_path(response.id), method: :delete, data: {:confirm => "Are you sure you want to destroy this response?"} %>
-      <% end %>
-      </p>
     </div>
-  </div>
   </div>
 </div>
 <% end %>
