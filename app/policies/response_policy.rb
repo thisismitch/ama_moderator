@@ -16,6 +16,13 @@ class ResponsePolicy < ApplicationPolicy
 
   def destroy?
   	user.id == response.user_id || user.admin?
+  end
 
+  def approve?
+    user.admin?
+  end
+
+  def disapprove?
+    user.admin?
   end
 end

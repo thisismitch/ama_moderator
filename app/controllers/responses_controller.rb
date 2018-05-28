@@ -1,11 +1,18 @@
 class ResponsesController < ApplicationController
-  before_action :set_response, only: [:edit, :update, :destroy]
+  before_action :set_response, only: [:edit, :update, :destroy, :approve, :disapprove]
   before_action :set_question, only: [:index, :new, :create]
   before_action :set_events
 
   def index
     @user = current_user
-    @responses = @question.responses.sort_by(&:created_at)
+
+    @responses = @question.responses
+    @unapproved_anonymous_responses_count = @responses.where('anonymous_flag = true AND admin_approved_at IS NULL').count
+    if anonymous_requires_admin_approval? && !@user.admin
+      @responses = @responses.approved_anonymous
+    end
+    @responses = @responses.sort_by(&:created_at)
+
     @event = @question.event
   end
 
@@ -61,6 +68,18 @@ class ResponsesController < ApplicationController
     end
   end
 
+  def approve
+    authorize(@response)
+    @response.update_columns(admin_approved_at: Time.now, admin_approved_by_user_id: current_user.id)
+    redirect_to question_responses_path(@response.question_id, anchor: "response_#{@response.id}"), notice: 'Response was approved.'
+  end
+
+  def disapprove
+    authorize(@response)
+    @response.update_columns(admin_approved_at: nil, admin_approved_by_user_id: nil)
+    redirect_to question_responses_path(@response.question_id, anchor: "response_#{@response.id}"), notice: 'Response was disapproved.'
+  end
+
   private
 
   def response_params
@@ -72,7 +91,11 @@ class ResponsesController < ApplicationController
   end
 
   def set_question
-    @question = Question.find(params[:id])
+    if anonymous_requires_admin_approval? && !current_user.admin
+      @question = Question.approved_anonymous.find(params[:id])
+    else
+      @question = Question.find(params[:id])
+    end
   end
 
   def set_events
