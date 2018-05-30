@@ -7,7 +7,7 @@ class Question < ActiveRecord::Base
   has_many :votes, dependent: :destroy
   has_many :responses, dependent: :destroy
 
-  scope :approved_anonymous, -> { where('anonymous_flag = false OR (anonymous_flag = true AND admin_approved_at IS NOT NULL)') }
+  scope :approved_anonymous, -> { where('anonymous_flag IS NULL OR anonymous_flag = false OR (anonymous_flag = true AND admin_approved_at IS NOT NULL)') }
 
   def upvotes
     votes.where('type_of LIKE ?', :up).count
