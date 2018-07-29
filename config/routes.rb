@@ -21,9 +21,8 @@ Rails.application.routes.draw do
   put '/questions/:id/approve', to: 'questions#approve', as: 'approve_question'
   put '/questions/:id/disapprove', to: 'questions#disapprove', as: 'disapprove_question'
 
-  resources :events, concerns: :has_questions
-  get '/events/:id/close', to: 'events#close', as: 'close_event'
   get '/events/:id/open', to: 'events#open', as: 'open_event'
+  put '/events/:id/open', to: 'events#open', as: 'open_event'
 
   get '/users', to: 'users#index', as: 'users'
   post '/users/:id', to: 'users#update', as: 'user'
